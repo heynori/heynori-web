@@ -27,6 +27,7 @@ class HeyNoriApp {
     this.setupNotifications();
     this.initializeCharts();
     this.handleURLParameters();
+    this.setupLanguageSelector();
   }
 
   // Setup all event listeners
@@ -285,7 +286,7 @@ class HeyNoriApp {
     // Required field validation
     if (field.hasAttribute('required') && !field.value.trim()) {
       isValid = false;
-      errorMessage = 'Este campo es obligatorio';
+      errorMessage = window.i18n ? window.i18n.translate('validation.required') : 'Este campo es obligatorio';
     }
 
     // Email validation
@@ -293,7 +294,7 @@ class HeyNoriApp {
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       if (!emailRegex.test(field.value)) {
         isValid = false;
-        errorMessage = 'Por favor ingresa un email válido';
+        errorMessage = window.i18n ? window.i18n.translate('validation.email') : 'Por favor ingresa un email válido';
       }
     }
 
@@ -303,7 +304,7 @@ class HeyNoriApp {
       const domain = field.value.split('@')[1]?.toLowerCase();
       if (personalDomains.includes(domain)) {
         isValid = false;
-        errorMessage = 'Por favor usa tu email corporativo';
+        errorMessage = window.i18n ? window.i18n.translate('validation.corporate-email') : 'Por favor usa tu email corporativo';
       }
     }
 
@@ -449,6 +450,7 @@ class HeyNoriApp {
   activateRainbowMode() {
     if (this.isRainbowMode) return;
     
+    const t = (key, fallback) => window.i18n ? window.i18n.translate(key) : fallback;
     this.isRainbowMode = true;
     document.body.classList.add('rainbow-mode');
     
@@ -458,13 +460,19 @@ class HeyNoriApp {
     // Trigger vibration
     this.triggerVibration();
     
-    this.showNotification('🌈 ¡Modo arcoíris activado! 🦄', 'success');
+    this.showNotification(
+      t('easter.rainbow-activated', '🌈 ¡Modo arcoíris activado! 🦄'), 
+      'success'
+    );
     
     // Auto-disable after 10 seconds
     setTimeout(() => {
       document.body.classList.remove('rainbow-mode');
       this.isRainbowMode = false;
-      this.showNotification('Modo arcoíris desactivado', 'info');
+      this.showNotification(
+        t('easter.rainbow-disabled', 'Modo arcoíris desactivado'), 
+        'info'
+      );
     }, 10000);
   }
 
@@ -1026,21 +1034,23 @@ class HeyNoriApp {
 
   // Demo modal content
   getDemoModalContent() {
+    const t = (key, fallback) => window.i18n ? window.i18n.translate(key) : fallback;
+    
     return `
       <div class="modal-header">
-        <h2>Ver Demo en Vivo</h2>
-        <p>Descubre cómo Nori puede transformar tu productividad en solo 15 minutos</p>
+        <h2>${t('modal.demo.title', 'Ver Demo en Vivo')}</h2>
+        <p>${t('modal.demo.description', 'Descubre cómo Nori puede transformar tu productividad en solo 15 minutos')}</p>
       </div>
       <div class="modal-video">
         <div class="video-placeholder">
           <i class="fas fa-play-circle" style="font-size: 4rem; color: var(--accent-red);"></i>
-          <p>Demo interactivo próximamente</p>
+          <p>${t('modal.demo.coming-soon', 'Demo interactivo próximamente')}</p>
         </div>
         </div>
       <div class="modal-footer">
         <button class="btn btn-primary" onclick="window.heyNoriApp.scrollToContact(); window.heyNoriApp.closeModal();">
           <i class="fas fa-calendar-alt" aria-hidden="true"></i>
-          Solicitar Demo Personalizada
+          ${t('modal.demo.btn-request', 'Solicitar Demo Personalizada')}
         </button>
       </div>
     `;
@@ -1048,12 +1058,14 @@ class HeyNoriApp {
 
   // Success modal content
   getSuccessModalContent() {
+    const t = (key, fallback) => window.i18n ? window.i18n.translate(key) : fallback;
+    
     return `
       <div class="modal-header">
         <div style="text-align: center; margin-bottom: 2rem;">
           <i class="fas fa-check-circle" style="font-size: 4rem; color: var(--success); margin-bottom: 1rem;"></i>
-          <h2>¡Solicitud Enviada!</h2>
-          <p>Gracias por tu interés en heynori!</p>
+          <h2>${t('modal.success.title', '¡Solicitud Enviada!')}</h2>
+          <p>${t('modal.success.description', 'Gracias por tu interés en heynori!')}</p>
       </div>
           </div>
       <div class="modal-content-body">
@@ -1061,22 +1073,22 @@ class HeyNoriApp {
           <div class="success-feature">
             <i class="fas fa-clock" aria-hidden="true"></i>
             <div>
-              <h3>Te contactaremos en 24 horas</h3>
-              <p>Nuestro equipo revisará tu información y te contactará pronto</p>
+              <h3>${t('modal.success.contact-24h', 'Te contactaremos en 24 horas')}</h3>
+              <p>${t('modal.success.contact-desc', 'Nuestro equipo revisará tu información y te contactará pronto')}</p>
         </div>
       </div>
           <div class="success-feature">
             <i class="fas fa-calendar-check" aria-hidden="true"></i>
             <div>
-              <h3>Demo personalizada lista</h3>
-              <p>Prepararemos una demo específica para tu caso de uso</p>
+              <h3>${t('modal.success.demo-ready', 'Demo personalizada lista')}</h3>
+              <p>${t('modal.success.demo-desc', 'Prepararemos una demo específica para tu caso de uso')}</p>
             </div>
           </div>
           <div class="success-feature">
             <i class="fas fa-rocket" aria-hidden="true"></i>
             <div>
-              <h3>Setup en 24 horas</h3>
-              <p>Si decides continuar, tendrás Nori funcionando al día siguiente</p>
+              <h3>${t('modal.success.setup-24h', 'Setup en 24 horas')}</h3>
+              <p>${t('modal.success.setup-desc', 'Si decides continuar, tendrás Nori funcionando al día siguiente')}</p>
             </div>
           </div>
         </div>
@@ -1103,13 +1115,14 @@ class HeyNoriApp {
   showChartError(canvas, description) {
     canvas.style.display = 'none';
     
+    const isEnglish = document.documentElement.lang === 'en';
     const errorDiv = document.createElement('div');
     errorDiv.className = 'chart-error';
     errorDiv.innerHTML = `
       <div class="error-content">
         <i class="fas fa-chart-bar" style="font-size: 2rem; color: var(--gray-400); margin-bottom: 1rem;"></i>
         <h4>${description}</h4>
-        <p>Gráfico interactivo no disponible<br>Los datos se cargan dinámicamente</p>
+        <p>${isEnglish ? 'Interactive chart not available<br>Data loads dynamically' : 'Gráfico interactivo no disponible<br>Los datos se cargan dinámicamente'}</p>
       </div>
     `;
     
@@ -1128,6 +1141,27 @@ class HeyNoriApp {
     `;
     
     canvas.parentNode.appendChild(errorDiv);
+  }
+
+  // Setup language selector
+  setupLanguageSelector() {
+    // Wait for i18n to be ready
+    if (!window.i18n) {
+      setTimeout(() => this.setupLanguageSelector(), 100);
+        return;
+      }
+
+    const container = document.getElementById('language-selector-container');
+    if (!container) return;
+
+    // Create language selector
+    const selector = window.i18n.createLanguageSelector();
+    container.appendChild(selector);
+
+    // Listen for language changes to update UI
+    document.addEventListener('languageChanged', (e) => {
+      console.log(`🌐 Idioma cambiado a: ${e.detail.language}`);
+    });
   }
 
   // Cleanup on page unload

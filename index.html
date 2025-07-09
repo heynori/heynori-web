@@ -80,12 +80,13 @@
                     <img src="assets/images/IS5uYOSPH6JapiCuAutslC6X70U.avif" alt="heynori! - IA para productividad" class="logo" width="120" height="40" loading="eager">
                 </div>
                 <div class="nav-links">
-                    <a href="#como-funciona" class="nav-link" aria-label="Ir a sección cómo funciona">Cómo Funciona</a>
-                    <a href="#beneficios" class="nav-link" aria-label="Ir a sección beneficios">Beneficios</a>
-                    <a href="#integraciones" class="nav-link" aria-label="Ir a sección integraciones">Integraciones</a>
-                    <a href="#contacto" class="nav-link" aria-label="Ir a sección contacto">Contacto</a>
-                    <a href="en/" class="nav-link lang-switch" aria-label="Switch to English version">🇺🇸 EN</a>
-                    <button class="btn btn-primary nav-cta" aria-label="Solicitar acceso a heynori">
+                    <a href="#como-funciona" class="nav-link" data-i18n="nav.como-funciona">Cómo Funciona</a>
+                    <a href="#beneficios" class="nav-link" data-i18n="nav.beneficios">Beneficios</a>
+                    <a href="#integraciones" class="nav-link" data-i18n="nav.integraciones">Integraciones</a>
+                    <a href="#contacto" class="nav-link" data-i18n="nav.contacto">Contacto</a>
+                    <!-- Selector de idiomas dinámico será insertado aquí por JavaScript -->
+                    <div id="language-selector-container"></div>
+                    <button class="btn btn-primary nav-cta" data-i18n="nav.solicitar-acceso">
                         <i class="fas fa-rocket" aria-hidden="true"></i>
                         Solicitar Acceso
                     </button>
@@ -102,11 +103,11 @@
     <!-- Mobile Menu -->
     <div class="mobile-menu" id="mobile-menu" role="navigation" aria-label="Menú móvil" aria-hidden="true">
         <div class="mobile-menu-content">
-            <a href="#como-funciona" class="mobile-link">Cómo Funciona</a>
-            <a href="#beneficios" class="mobile-link">Beneficios</a>
-            <a href="#integraciones" class="mobile-link">Integraciones</a>
-            <a href="#contacto" class="mobile-link">Contacto</a>
-            <button class="btn btn-primary mobile-cta">
+            <a href="#como-funciona" class="mobile-link" data-i18n="nav.como-funciona">Cómo Funciona</a>
+            <a href="#beneficios" class="mobile-link" data-i18n="nav.beneficios">Beneficios</a>
+            <a href="#integraciones" class="mobile-link" data-i18n="nav.integraciones">Integraciones</a>
+            <a href="#contacto" class="mobile-link" data-i18n="nav.contacto">Contacto</a>
+            <button class="btn btn-primary mobile-cta" data-i18n="nav.solicitar-acceso">
                 <i class="fas fa-rocket" aria-hidden="true"></i>
                 Solicitar Acceso
             </button>
@@ -121,32 +122,32 @@
                 <div class="hero-content">
                     <div class="hero-text">
                         <h1 class="hero-title">
-                            IA que realmente entiende 
-                            <span class="gradient-text">cómo trabaja tu equipo</span>
+                            <span data-i18n="hero.title">IA que realmente entiende</span> 
+                            <span class="gradient-text" data-i18n="hero.subtitle">cómo trabaja tu equipo</span>
                         </h1>
-                        <p class="hero-subtitle">
+                        <p class="hero-subtitle" data-i18n="hero.description">
                             Nori conecta automáticamente todas tus herramientas de trabajo para eliminar tareas repetitivas, acelerar proyectos y optimizar la productividad de manera inteligente.
                         </p>
                         <div class="hero-ctas">
-                            <button class="btn btn-primary btn-large" data-action="demo-request">
+                            <button class="btn btn-primary btn-large" data-action="demo-request" data-i18n="hero.btn-solicitar">
                                 <i class="fas fa-calendar-alt" aria-hidden="true"></i>
                                 Solicitar Demo Personalizada
                                 <span class="btn-arrow">→</span>
                             </button>
-                            <button class="btn btn-secondary btn-large" data-action="live-demo">
+                            <button class="btn btn-secondary btn-large" data-action="live-demo" data-i18n="hero.btn-demo">
                                 <i class="fas fa-play-circle" aria-hidden="true"></i>
                                 Ver Demo en Vivo
                             </button>
                         </div>
                         <p class="hero-note">
                             <i class="fas fa-shield-alt" aria-hidden="true"></i>
-                            Acceso anticipado limitado • Sin tarjeta de crédito
+                            <span data-i18n="hero.note">Acceso anticipado limitado • Sin tarjeta de crédito</span>
                         </p>
                     </div>
                     <div class="hero-visual">
                         <div class="hero-logo-container">
                             <img src="assets/images/IS5uYOSPH6JapiCuAutslC6X70U.avif" alt="heynori! - IA que entiende tu trabajo" class="hero-logo" loading="eager">
-                            <div class="hero-tagline">Your life. Your work. Your rhythm. Enhanced.</div>
+                            <div class="hero-tagline" data-i18n="hero.tagline">Your life. Your work. Your rhythm. Enhanced.</div>
                         </div>
                         <div class="integration-showcase">
                             <div class="integration-item">
@@ -183,36 +184,36 @@
         <section class="problem" aria-labelledby="problem-title">
             <div class="container">
                 <div class="section-header">
-                    <h2 id="problem-title" class="section-title">¿Te suena familiar?</h2>
+                    <h2 id="problem-title" class="section-title" data-i18n="problems.title">¿Te suena familiar?</h2>
                 </div>
                 <div class="problem-grid">
                     <div class="problem-card">
                         <div class="problem-icon" aria-hidden="true">
                             <i class="fas fa-clock text-accent"></i>
                         </div>
-                        <h3>Tiempo perdido</h3>
-                        <p>Tu equipo pierde horas cada semana cambiando entre aplicaciones y copiando información manualmente</p>
+                        <h3 data-i18n="problems.time-lost.title">Tiempo perdido</h3>
+                        <p data-i18n="problems.time-lost.desc">Tu equipo pierde horas cada semana cambiando entre aplicaciones y copiando información manualmente</p>
                     </div>
                     <div class="problem-card">
                         <div class="problem-icon" aria-hidden="true">
                             <i class="fas fa-eye-slash text-accent"></i>
                         </div>
-                        <h3>Falta de visibilidad</h3>
-                        <p>Los proyectos se retrasan porque nadie tiene una vista completa del progreso real</p>
+                        <h3 data-i18n="problems.visibility.title">Falta de visibilidad</h3>
+                        <p data-i18n="problems.visibility.desc">Los proyectos se retrasan porque nadie tiene una vista completa del progreso real</p>
                     </div>
                     <div class="problem-card">
                         <div class="problem-icon" aria-hidden="true">
                             <i class="fas fa-user-times text-accent"></i>
                         </div>
-                        <h3>Talento frustrado</h3>
-                        <p>Tus mejores profesionales se agotan con tareas repetitivas que una máquina podría hacer</p>
+                        <h3 data-i18n="problems.talent.title">Talento frustrado</h3>
+                        <p data-i18n="problems.talent.desc">Tus mejores profesionales se agotan con tareas repetitivas que una máquina podría hacer</p>
                     </div>
                     <div class="problem-card">
                         <div class="problem-icon" aria-hidden="true">
                             <i class="fas fa-chart-line text-accent"></i>
                         </div>
-                        <h3>Decisiones a ciegas</h3>
-                        <p>No tienes datos confiables para tomar decisiones estratégicas sobre productividad</p>
+                        <h3 data-i18n="problems.decisions.title">Decisiones a ciegas</h3>
+                        <p data-i18n="problems.decisions.desc">No tienes datos confiables para tomar decisiones estratégicas sobre productividad</p>
                     </div>
                 </div>
             </div>
@@ -222,8 +223,8 @@
         <section class="solution" id="como-funciona">
             <div class="container">
                 <div class="section-header">
-                    <h2 class="section-title">Nori es diferente</h2>
-                    <p class="section-subtitle">La primera IA que realmente entiende cómo trabaja tu equipo</p>
+                    <h2 class="section-title" data-i18n="solution.title">Nori es diferente</h2>
+                    <p class="section-subtitle" data-i18n="solution.subtitle">La primera IA que realmente entiende cómo trabaja tu equipo</p>
                 </div>
                 <div class="solution-features">
                     <div class="feature">
@@ -233,12 +234,12 @@
                             </svg>
                         </div>
                         <div class="feature-content">
-                            <h3>Conectividad Sin Límites</h3>
-                            <p>Integra todas tus herramientas en minutos, no meses. APIs nativas y conectores personalizados para sincronización bidireccional en tiempo real.</p>
+                            <h3 data-i18n="solution.connectivity.title">Conectividad Sin Límites</h3>
+                            <p data-i18n="solution.connectivity.desc">Integra todas tus herramientas en minutos, no meses. APIs nativas y conectores personalizados para sincronización bidireccional en tiempo real.</p>
                             <ul>
-                                <li>Setup instantáneo</li>
-                                <li>Zero fricción para tu equipo</li>
-                                <li>Mantén las herramientas que amas</li>
+                                <li data-i18n="solution.connectivity.setup">Setup instantáneo</li>
+                                <li data-i18n="solution.connectivity.friction">Zero fricción para tu equipo</li>
+                                <li data-i18n="solution.connectivity.tools">Mantén las herramientas que amas</li>
                             </ul>
                         </div>
                     </div>
@@ -250,12 +251,12 @@
                             </svg>
                         </div>
                         <div class="feature-content">
-                            <h3>IA que Aprende Tu Contexto</h3>
-                            <p>Mapea automáticamente tus procesos únicos, predice bloqueos antes de que ocurran y sugiere optimizaciones basadas en los patrones de tu equipo.</p>
+                            <h3 data-i18n="solution.ai.title">IA que Aprende Tu Contexto</h3>
+                            <p data-i18n="solution.ai.desc">Mapea automáticamente tus procesos únicos, predice bloqueos antes de que ocurran y sugiere optimizaciones basadas en los patrones de tu equipo.</p>
                             <ul>
-                                <li>Aprendizaje continuo</li>
-                                <li>Predicciones inteligentes</li>
-                                <li>Optimización automática</li>
+                                <li data-i18n="solution.ai.learning">Aprendizaje continuo</li>
+                                <li data-i18n="solution.ai.predictions">Predicciones inteligentes</li>
+                                <li data-i18n="solution.ai.optimization">Optimización automática</li>
                             </ul>
                         </div>
                     </div>
@@ -266,12 +267,12 @@
                             </svg>
                         </div>
                         <div class="feature-content">
-                            <h3>Automatización Inteligente</h3>
-                            <p>Elimina la mayoría de tareas manuales entre apps, actualiza estados de proyectos automáticamente y genera reportes ejecutivos al instante.</p>
+                            <h3 data-i18n="solution.automation.title">Automatización Inteligente</h3>
+                            <p data-i18n="solution.automation.desc">Elimina la mayoría de tareas manuales entre apps, actualiza estados de proyectos automáticamente y genera reportes ejecutivos al instante.</p>
                             <ul>
-                                <li>Workflows automáticos</li>
-                                <li>Reportes instantáneos</li>
-                                <li>Alertas proactivas</li>
+                                <li data-i18n="solution.automation.workflows">Workflows automáticos</li>
+                                <li data-i18n="solution.automation.reports">Reportes instantáneos</li>
+                                <li data-i18n="solution.automation.alerts">Alertas proactivas</li>
                             </ul>
                         </div>
                     </div>
@@ -283,12 +284,12 @@
                             </svg>
                         </div>
                         <div class="feature-content">
-                            <h3>Insights para Líderes</h3>
-                            <p>Dashboards ejecutivos con métricas de productividad real, identificación de cuellos de botella y benchmarking con equipos de alto rendimiento.</p>
+                            <h3 data-i18n="solution.insights.title">Insights para Líderes</h3>
+                            <p data-i18n="solution.insights.desc">Dashboards ejecutivos con métricas de productividad real, identificación de cuellos de botella y benchmarking con equipos de alto rendimiento.</p>
                             <ul>
-                                <li>Métricas accionables</li>
-                                <li>ROI medible</li>
-                                <li>Optimización continua</li>
+                                <li data-i18n="solution.insights.metrics">Métricas accionables</li>
+                                <li data-i18n="solution.insights.roi">ROI medible</li>
+                                <li data-i18n="solution.insights.continuous">Optimización continua</li>
                             </ul>
                         </div>
                     </div>
@@ -301,7 +302,7 @@
             <div class="container">
                 <div class="benefits-content">
                     <div class="benefits-text">
-                        <h2 class="section-title">Para equipos que valoran su tiempo</h2>
+                        <h2 class="section-title" data-i18n="benefits.title">Para equipos que valoran su tiempo</h2>
                         <div class="benefit-list">
                             <div class="benefit-item">
                                 <div class="benefit-icon">
@@ -310,8 +311,8 @@
                                     </svg>
                                 </div>
                                 <div>
-                                    <h3>Más tiempo para crear</h3>
-                                    <p>Tu equipo se enfoca en trabajo estratégico, no en copiar y pegar entre herramientas</p>
+                                    <h3 data-i18n="benefits.create.title">Más tiempo para crear</h3>
+                                    <p data-i18n="benefits.create.desc">Tu equipo se enfoca en trabajo estratégico, no en copiar y pegar entre herramientas</p>
                                 </div>
                             </div>
                             <div class="benefit-item">
@@ -324,8 +325,8 @@
                                     </svg>
                                 </div>
                                 <div>
-                                    <h3>Proyectos que fluyen</h3>
-                                    <p>Sincronización automática mantiene a todos alineados sin reuniones innecesarias</p>
+                                    <h3 data-i18n="benefits.flow.title">Proyectos que fluyen</h3>
+                                    <p data-i18n="benefits.flow.desc">Sincronización automática mantiene a todos alineados sin reuniones innecesarias</p>
                                 </div>
                             </div>
                             <div class="benefit-item">
@@ -335,8 +336,8 @@
                                     </svg>
                                 </div>
                                 <div>
-                                    <h3>Decisiones más inteligentes</h3>
-                                    <p>Datos en tiempo real para optimizar procesos y anticipar problemas</p>
+                                    <h3 data-i18n="benefits.decisions.title">Decisiones más inteligentes</h3>
+                                    <p data-i18n="benefits.decisions.desc">Datos en tiempo real para optimizar procesos y anticipar problemas</p>
                                 </div>
                             </div>
                             <div class="benefit-item">
@@ -346,8 +347,8 @@
                                     </svg>
                                 </div>
                                 <div>
-                                    <h3>Escalabilidad sin estrés</h3>
-                                    <p>Crece tu equipo sin multiplicar la complejidad de tus procesos</p>
+                                    <h3 data-i18n="benefits.scalability.title">Escalabilidad sin estrés</h3>
+                                    <p data-i18n="benefits.scalability.desc">Crece tu equipo sin multiplicar la complejidad de tus procesos</p>
                                 </div>
                             </div>
                         </div>
@@ -356,17 +357,17 @@
                         <div class="workflow-demo">
                             <div class="workflow-step active">
                                 <span class="step-number">1</span>
-                                <span class="step-text">Detecta patrones</span>
+                                <span class="step-text" data-i18n="benefits.workflow.step1">Detecta patrones</span>
                             </div>
                             <div class="workflow-arrow">↓</div>
                             <div class="workflow-step">
                                 <span class="step-number">2</span>
-                                <span class="step-text">Automatiza flujos</span>
+                                <span class="step-text" data-i18n="benefits.workflow.step2">Automatiza flujos</span>
                             </div>
                             <div class="workflow-arrow">↓</div>
                             <div class="workflow-step">
                                 <span class="step-number">3</span>
-                                <span class="step-text">Optimiza continuamente</span>
+                                <span class="step-text" data-i18n="benefits.workflow.step3">Optimiza continuamente</span>
                             </div>
                         </div>
                     </div>
@@ -378,12 +379,12 @@
         <section class="integrations" id="integraciones">
             <div class="container">
                 <div class="section-header">
-                    <h2 class="section-title">Se conecta con las herramientas que ya usas</h2>
-                    <p class="section-subtitle">No cambies tu stack, mejóralo</p>
+                    <h2 class="section-title" data-i18n="integrations.title">Se conecta con las herramientas que ya usas</h2>
+                    <p class="section-subtitle" data-i18n="integrations.subtitle">No cambies tu stack, mejóralo</p>
                 </div>
                 <div class="integrations-grid">
                     <div class="integration-category">
-                        <h3>Comunicación</h3>
+                        <h3 data-i18n="integrations.communication">Comunicación</h3>
                         <div class="integration-logos">
                             <div class="integration-logo-item">
                                 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/slack/slack-original.svg" alt="Slack" class="tool-logo">
@@ -404,7 +405,7 @@
                         </div>
                     </div>
                     <div class="integration-category">
-                        <h3>Gestión de Proyectos</h3>
+                        <h3 data-i18n="integrations.project-management">Gestión de Proyectos</h3>
                         <div class="integration-logos">
                             <div class="integration-logo-item">
                                 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jira/jira-original.svg" alt="Jira" class="tool-logo">
@@ -425,7 +426,7 @@
                         </div>
                     </div>
                     <div class="integration-category">
-                        <h3>Desarrollo</h3>
+                        <h3 data-i18n="integrations.development">Desarrollo</h3>
                         <div class="integration-logos">
                             <div class="integration-logo-item">
                                 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" class="tool-logo">
@@ -446,7 +447,7 @@
                         </div>
                     </div>
                     <div class="integration-category">
-                        <h3>CRM & Ventas</h3>
+                        <h3 data-i18n="integrations.crm-sales">CRM & Ventas</h3>
                         <div class="integration-logos">
                             <div class="integration-logo-item">
                                 <img src="https://upload.wikimedia.org/wikipedia/commons/f/f9/Salesforce.com_logo.svg" alt="Salesforce" class="tool-logo">
@@ -467,7 +468,7 @@
                         </div>
                     </div>
                 </div>
-                <p class="integrations-note">+ Más de 100 integraciones adicionales</p>
+                <p class="integrations-note" data-i18n="integrations.note">+ Más de 100 integraciones adicionales</p>
             </div>
         </section>
 
@@ -475,17 +476,17 @@
         <section class="cta">
             <div class="container">
                 <div class="cta-content">
-                    <h2 class="cta-title">
+                    <h2 class="cta-title" data-i18n="cta.title">
                         Únete al futuro del trabajo
                     </h2>
-                    <p class="cta-subtitle">
+                    <p class="cta-subtitle" data-i18n="cta.subtitle">
                         Acceso anticipado limitado para equipos que quieren ser pioneros en productividad inteligente
                     </p>
                     <div class="cta-buttons">
-                        <button class="btn btn-primary btn-large">
+                        <button class="btn btn-primary btn-large" data-i18n="cta.btn-access">
                             Solicitar Acceso Anticipado
                         </button>
-                        <button class="btn btn-secondary btn-large">
+                        <button class="btn btn-secondary btn-large" data-i18n="cta.btn-call">
                             Agendar Llamada
                         </button>
                     </div>
@@ -496,7 +497,7 @@
                                     <path d="M9 12L11 14L15 10M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="#FF3947" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                 </svg>
                             </span>
-                            <span>Setup personalizado incluido</span>
+                            <span data-i18n="cta.feature.setup">Setup personalizado incluido</span>
                         </div>
                         <div class="cta-feature">
                             <span class="feature-check">
@@ -504,7 +505,7 @@
                                     <path d="M9 12L11 14L15 10M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="#FF3947" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                 </svg>
                             </span>
-                            <span>Soporte dedicado</span>
+                            <span data-i18n="cta.feature.support">Soporte dedicado</span>
                         </div>
                         <div class="cta-feature">
                             <span class="feature-check">
@@ -512,7 +513,7 @@
                                     <path d="M9 12L11 14L15 10M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="#FF3947" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                 </svg>
                             </span>
-                            <span>Influencia en roadmap</span>
+                            <span data-i18n="cta.feature.roadmap">Influencia en roadmap</span>
                         </div>
                     </div>
                 </div>
@@ -524,29 +525,29 @@
             <div class="container">
                 <div class="contact-content">
                     <div class="contact-info">
-                        <h2 id="contact-title" class="section-title">¿Listo para transformar tu productividad?</h2>
-                        <p class="section-subtitle">Cuéntanos sobre tu equipo y te mostraremos cómo Nori puede revolucionar tu flujo de trabajo en menos de 30 días.</p>
+                        <h2 id="contact-title" class="section-title" data-i18n="contact.title">¿Listo para transformar tu productividad?</h2>
+                        <p class="section-subtitle" data-i18n="contact.subtitle">Cuéntanos sobre tu equipo y te mostraremos cómo Nori puede revolucionar tu flujo de trabajo en menos de 30 días.</p>
                         
                         <div class="contact-features">
                             <div class="contact-feature">
                                 <i class="fas fa-rocket" aria-hidden="true"></i>
                                 <div>
-                                    <h3>Setup en 24 horas</h3>
-                                    <p>Implementación express sin interrumpir tu trabajo</p>
+                                    <h3 data-i18n="contact.feature.setup.title">Setup en 24 horas</h3>
+                                    <p data-i18n="contact.feature.setup.desc">Implementación express sin interrumpir tu trabajo</p>
                                 </div>
                             </div>
                             <div class="contact-feature">
                                 <i class="fas fa-shield-alt" aria-hidden="true"></i>
                                 <div>
-                                    <h3>Seguridad enterprise</h3>
-                                    <p>SOC2, GDPR compliance y encriptación end-to-end</p>
+                                    <h3 data-i18n="contact.feature.security.title">Seguridad enterprise</h3>
+                                    <p data-i18n="contact.feature.security.desc">SOC2, GDPR compliance y encriptación end-to-end</p>
                                 </div>
                             </div>
                             <div class="contact-feature">
                                 <i class="fas fa-headset" aria-hidden="true"></i>
                                 <div>
-                                    <h3>Soporte 24/7</h3>
-                                    <p>Equipo dedicado para resolver cualquier duda</p>
+                                    <h3 data-i18n="contact.feature.support247.title">Soporte 24/7</h3>
+                                    <p data-i18n="contact.feature.support247.desc">Equipo dedicado para resolver cualquier duda</p>
                                 </div>
                             </div>
                         </div>
@@ -565,7 +566,7 @@
           <input type="checkbox" name="botcheck" style="display: none;" tabindex="-1" autocomplete="off">
                     
                     <div class="form-group">
-                                <label for="fullName" class="form-label">Nombre completo *</label>
+                                <label for="fullName" class="form-label" data-i18n="form.nombre">Nombre completo *</label>
                                 <input 
                                     type="text" 
                                     id="fullName" 
@@ -579,7 +580,7 @@
                             </div>
                             
                             <div class="form-group">
-                                <label for="email" class="form-label">Email corporativo *</label>
+                                <label for="email" class="form-label" data-i18n="form.email">Email corporativo *</label>
                                 <input 
                                     type="email" 
                                     id="email" 
@@ -593,7 +594,7 @@
                             </div>
                             
                             <div class="form-group">
-                                <label for="company" class="form-label">Empresa *</label>
+                                <label for="company" class="form-label" data-i18n="form.empresa">Empresa *</label>
                                 <input 
                                     type="text" 
                                     id="company" 
@@ -607,7 +608,7 @@
                             </div>
                             
                             <div class="form-group">
-                                <label for="teamSize" class="form-label">Tamaño del equipo *</label>
+                                <label for="teamSize" class="form-label" data-i18n="form.team-size">Tamaño del equipo *</label>
                                 <select 
                                     id="teamSize" 
                                     name="teamSize" 
@@ -615,18 +616,18 @@
                                     required 
                                     aria-describedby="teamSize-error"
                                 >
-                                    <option value="">Seleccionar...</option>
-                                    <option value="1-10">1-10 personas</option>
-                                    <option value="11-50">11-50 personas</option>
-                                    <option value="51-200">51-200 personas</option>
-                                    <option value="201-500">201-500 personas</option>
-                                    <option value="500+">Más de 500 personas</option>
+                                    <option value="" data-i18n="form.select-placeholder">Seleccionar...</option>
+                                    <option value="1-10" data-i18n="form.team-size.1-10">1-10 personas</option>
+                                    <option value="11-50" data-i18n="form.team-size.11-50">11-50 personas</option>
+                                    <option value="51-200" data-i18n="form.team-size.51-200">51-200 personas</option>
+                                    <option value="201-500" data-i18n="form.team-size.201-500">201-500 personas</option>
+                                    <option value="500+" data-i18n="form.team-size.500+">Más de 500 personas</option>
                                 </select>
                                 <span class="form-error" id="teamSize-error" role="alert" aria-live="polite"></span>
                             </div>
                             
                             <div class="form-group">
-                                <label for="useCase" class="form-label">¿Qué quieres optimizar? *</label>
+                                <label for="useCase" class="form-label" data-i18n="form.use-case">¿Qué quieres optimizar? *</label>
                                 <select 
                                     id="useCase" 
                                     name="useCase" 
@@ -634,28 +635,29 @@
                                     required 
                                     aria-describedby="useCase-error"
                                 >
-                                    <option value="">Seleccionar...</option>
-                                    <option value="development">Desarrollo de software</option>
-                                    <option value="sales">Procesos de ventas</option>
-                                    <option value="marketing">Campañas de marketing</option>
-                                    <option value="operations">Operaciones generales</option>
-                                    <option value="support">Atención al cliente</option>
-                                    <option value="other">Otro</option>
+                                    <option value="" data-i18n="form.select-placeholder">Seleccionar...</option>
+                                    <option value="development" data-i18n="form.use-case.development">Desarrollo de software</option>
+                                    <option value="sales" data-i18n="form.use-case.sales">Procesos de ventas</option>
+                                    <option value="marketing" data-i18n="form.use-case.marketing">Campañas de marketing</option>
+                                    <option value="operations" data-i18n="form.use-case.operations">Operaciones generales</option>
+                                    <option value="support" data-i18n="form.use-case.support">Atención al cliente</option>
+                                    <option value="other" data-i18n="form.use-case.other">Otro</option>
                                 </select>
                                 <span class="form-error" id="useCase-error" role="alert" aria-live="polite"></span>
                             </div>
                             
                             <div class="form-group">
-                                <label for="message" class="form-label">Cuéntanos tu principal desafío</label>
+                                <label for="message" class="form-label" data-i18n="form.message">Cuéntanos tu principal desafío</label>
                                 <textarea 
                                     id="message" 
                                     name="message" 
                                     class="form-textarea" 
                                     rows="4" 
+                                    data-i18n="form.message.placeholder"
                                     placeholder="Ej: Perdemos mucho tiempo sincronizando datos entre Slack y Jira..."
                                     aria-describedby="message-help"
                                 ></textarea>
-                                <span class="form-help" id="message-help">Opcional - nos ayuda a preparar una demo más relevante</span>
+                                <span class="form-help" id="message-help" data-i18n="form.message.help">Opcional - nos ayuda a preparar una demo más relevante</span>
                             </div>
                             
                             <div class="form-group form-checkbox">
@@ -665,7 +667,7 @@
                                     name="newsletter" 
                                     class="form-check"
                                 >
-                                <label for="newsletter" class="form-check-label">
+                                <label for="newsletter" class="form-check-label" data-i18n="form.newsletter">
                                     Quiero recibir actualizaciones sobre nuevas integraciones y funcionalidades
                                 </label>
                             </div>
@@ -680,23 +682,23 @@
                                     aria-describedby="privacy-error"
                                 >
                                 <label for="privacy" class="form-check-label">
-                                    Acepto la <a href="#" class="privacy-link">política de privacidad</a> y el procesamiento de mis datos *
+                                    <span data-i18n="form.privacy.text1">Acepto la</span> <a href="#" class="privacy-link" data-i18n="form.privacy.link">política de privacidad</a> <span data-i18n="form.privacy.text2">y el procesamiento de mis datos</span> *
                                 </label>
                                 <span class="form-error" id="privacy-error" role="alert" aria-live="polite"></span>
                             </div>
                             
                             <button type="submit" class="btn btn-primary btn-large form-submit" id="submitBtn">
                                 <i class="fas fa-paper-plane" aria-hidden="true"></i>
-                                <span class="btn-text">Solicitar Demo Personalizada</span>
+                                <span class="btn-text" data-i18n="form.submit">Solicitar Demo Personalizada</span>
                                 <span class="btn-loading" style="display: none;">
                                     <i class="fas fa-spinner fa-spin" aria-hidden="true"></i>
-                                    Enviando...
+                                    <span data-i18n="form.loading">Enviando...</span>
                                 </span>
                             </button>
                             
                             <p class="form-note">
                                 <i class="fas fa-clock" aria-hidden="true"></i>
-                                Te contactaremos en menos de 24 horas
+                                <span data-i18n="form.note">Te contactaremos en menos de 24 horas</span>
                             </p>
                         </form>
                     </div>
@@ -714,35 +716,35 @@
                 </div>
                 <div class="footer-links">
                     <div class="footer-column">
-                        <h4>Producto</h4>
-                        <a href="#" class="footer-link">Cómo Funciona</a>
-                        <a href="#" class="footer-link">Integraciones</a>
-                        <a href="#" class="footer-link">Seguridad</a>
-                        <a href="#" class="footer-link">Roadmap</a>
+                        <h4 data-i18n="footer.product">Producto</h4>
+                        <a href="#" class="footer-link" data-i18n="footer.how-it-works">Cómo Funciona</a>
+                        <a href="#" class="footer-link" data-i18n="footer.integrations">Integraciones</a>
+                        <a href="#" class="footer-link" data-i18n="footer.security">Seguridad</a>
+                        <a href="#" class="footer-link" data-i18n="footer.roadmap">Roadmap</a>
                     </div>
                     <div class="footer-column">
-                        <h4>Empresa</h4>
-                        <a href="#" class="footer-link">Sobre Nosotros</a>
-                        <a href="#" class="footer-link">Carreras</a>
-                        <a href="#" class="footer-link">Blog</a>
-                        <a href="#" class="footer-link">Prensa</a>
+                        <h4 data-i18n="footer.company">Empresa</h4>
+                        <a href="#" class="footer-link" data-i18n="footer.about-us">Sobre Nosotros</a>
+                        <a href="#" class="footer-link" data-i18n="footer.careers">Carreras</a>
+                        <a href="#" class="footer-link" data-i18n="footer.blog">Blog</a>
+                        <a href="#" class="footer-link" data-i18n="footer.press">Prensa</a>
                     </div>
                     <div class="footer-column">
-                        <h4>Soporte</h4>
-                        <a href="#" class="footer-link">Centro de Ayuda</a>
-                        <a href="#" class="footer-link">Documentación</a>
-                        <a href="#" class="footer-link">Status</a>
-                        <a href="#" class="footer-link">Contacto</a>
+                        <h4 data-i18n="footer.support">Soporte</h4>
+                        <a href="#" class="footer-link" data-i18n="footer.help-center">Centro de Ayuda</a>
+                        <a href="#" class="footer-link" data-i18n="footer.documentation">Documentación</a>
+                        <a href="#" class="footer-link" data-i18n="footer.status">Status</a>
+                        <a href="#" class="footer-link" data-i18n="footer.contact">Contacto</a>
                     </div>
                 </div>
             </div>
             <div class="footer-bottom">
                 <div class="footer-legal">
-                    <span>&copy; 2024 heynori! Todos los derechos reservados.</span>
+                    <span data-i18n="footer.copyright">&copy; 2024 heynori! Todos los derechos reservados.</span>
                     <div class="legal-links">
-                        <a href="#" class="legal-link">Privacidad</a>
-                        <a href="#" class="legal-link">Términos</a>
-                        <a href="#" class="legal-link">Cookies</a>
+                        <a href="#" class="legal-link" data-i18n="footer.privacy">Privacidad</a>
+                        <a href="#" class="legal-link" data-i18n="footer.terms">Términos</a>
+                        <a href="#" class="legal-link" data-i18n="footer.cookies">Cookies</a>
                     </div>
                 </div>
                 <div class="social-links">
@@ -791,6 +793,7 @@
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
     
     <!-- JavaScript -->
-    <script src="script.js"></script>
+    <script src="js/i18n.js"></script>
+<script src="script.js"></script>
 </body>
 </html>

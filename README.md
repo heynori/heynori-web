@@ -175,11 +175,23 @@ Modifica las variables CSS en `styles.css`:
 - **English**: Edita `en/index.html`
 - **Assets**: Reemplaza archivos en `assets/`
 
-### Agregar idiomas
-1. Crear carpeta: `mkdir nuevo-idioma`
-2. Copiar HTML: `copy en/index.html nuevo-idioma/`
-3. Traducir contenido
-4. Actualizar rutas relativas (`../`)
+### Sistema de Internacionalización (i18n) Dinámico
+
+**🌍 NUEVA FUNCIONALIDAD: Detección automática de idioma**
+
+El sitio ahora detecta automáticamente el idioma preferido del usuario y traduce dinámicamente todo el contenido:
+
+1. **Detección por navegador**: `navigator.language`
+2. **Detección por geolocalización**: País → idioma automático  
+3. **Persistencia**: Guarda preferencia en localStorage
+4. **Parámetro URL**: `?lang=en` para forzar idioma
+5. **4 idiomas soportados**: Español, Inglés, Portugués, Francés
+
+### Agregar nuevos idiomas
+1. **Editar**: `js/i18n.js`
+2. **Agregar idioma** a `supportedLanguages`: `['es', 'en', 'pt', 'fr', 'de']`
+3. **Agregar traducciones** para todas las claves existentes
+4. **¡Automático!** El selector se actualiza dinámicamente
 
 ## 📊 Métricas y Analytics
 
