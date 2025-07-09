@@ -4,7 +4,7 @@
 class I18nSystem {
   constructor() {
     this.currentLanguage = 'en'; // Idioma por defecto
-    this.supportedLanguages = ['es', 'en', 'pt', 'fr'];
+    this.supportedLanguages = ['es', 'en'];
     this.translations = {};
     this.isInitialized = false;
     
@@ -88,869 +88,589 @@ class I18nSystem {
       // Navegación
       'nav.como-funciona': {
         'es': 'Cómo Funciona',
-        'en': 'How It Works', 
-        'pt': 'Como Funciona',
-        'fr': 'Comment Ça Marche'
+        'en': 'How It Works'
       },
       'nav.beneficios': {
         'es': 'Beneficios',
-        'en': 'Benefits',
-        'pt': 'Benefícios', 
-        'fr': 'Avantages'
+        'en': 'Benefits'
       },
       'nav.integraciones': {
         'es': 'Integraciones',
-        'en': 'Integrations',
-        'pt': 'Integrações',
-        'fr': 'Intégrations'
+        'en': 'Integrations'
       },
       'nav.contacto': {
         'es': 'Contacto',
-        'en': 'Contact',
-        'pt': 'Contato',
-        'fr': 'Contact'
+        'en': 'Contact'
       },
       'nav.solicitar-acceso': {
         'es': 'Solicitar Acceso',
-        'en': 'Request Access',
-        'pt': 'Solicitar Acesso',
-        'fr': 'Demander l\'Accès'
+        'en': 'Request Access'
       },
 
       // Hero Section
       'hero.title': {
         'es': 'IA que realmente entiende',
-        'en': 'AI that truly understands',
-        'pt': 'IA que realmente entende',
-        'fr': 'IA qui comprend vraiment'
+        'en': 'AI that truly understands'
       },
       'hero.subtitle': {
         'es': 'cómo trabaja tu equipo',
-        'en': 'how your team works',
-        'pt': 'como sua equipe trabalha',
-        'fr': 'comment votre équipe travaille'
+        'en': 'how your team works'
       },
       'hero.description': {
         'es': 'Nori conecta automáticamente todas tus herramientas de trabajo para eliminar tareas repetitivas, acelerar proyectos y optimizar la productividad de manera inteligente.',
-        'en': 'Nori automatically connects all your work tools to eliminate repetitive tasks, accelerate projects, and intelligently optimize productivity.',
-        'pt': 'Nori conecta automaticamente todas as suas ferramentas de trabalho para eliminar tarefas repetitivas, acelerar projetos e otimizar a produtividade de forma inteligente.',
-        'fr': 'Nori connecte automatiquement tous vos outils de travail pour éliminer les tâches répétitives, accélérer les projets et optimiser intelligemment la productivité.'
+        'en': 'Nori automatically connects all your work tools to eliminate repetitive tasks, accelerate projects, and intelligently optimize productivity.'
       },
       'hero.btn-solicitar': {
         'es': 'Solicitar Demo Gratuita',
-        'en': 'Request Free Demo',
-        'pt': 'Solicitar Demo Gratuita',
-        'fr': 'Demander une Démo Gratuite'
+        'en': 'Request Free Demo'
       },
       'hero.btn-demo': {
         'es': 'Ver Demo en Vivo',
-        'en': 'Watch Live Demo',
-        'pt': 'Ver Demo ao Vivo',
-        'fr': 'Voir la Démo en Direct'
+        'en': 'Watch Live Demo'
       },
       'hero.note': {
         'es': 'Acceso anticipado limitado • Sin tarjeta de crédito',
-        'en': 'Limited early access • No credit card required',
-        'pt': 'Acesso antecipado limitado • Sem cartão de crédito',
-        'fr': 'Accès anticipé limité • Aucune carte de crédit requise'
+        'en': 'Limited early access • No credit card required'
       },
 
       // Formulario
       'form.nombre': {
         'es': 'Nombre completo',
-        'en': 'Full name',
-        'pt': 'Nome completo',
-        'fr': 'Nom complet'
+        'en': 'Full name'
       },
       'form.email': {
         'es': 'Email corporativo',
-        'en': 'Corporate email',
-        'pt': 'Email corporativo',
-        'fr': 'Email corporatif'
+        'en': 'Corporate email'
       },
       'form.empresa': {
         'es': 'Empresa',
-        'en': 'Company',
-        'pt': 'Empresa',
-        'fr': 'Entreprise'
+        'en': 'Company'
       },
       'form.submit': {
         'es': 'Solicitar Demo Personalizada',
-        'en': 'Request Personalized Demo',
-        'pt': 'Solicitar Demo Personalizada',
-        'fr': 'Demander une Démo Personnalisée'
+        'en': 'Request Personalized Demo'
       },
       'form.team-size': {
         'es': 'Tamaño del equipo',
-        'en': 'Team size',
-        'pt': 'Tamanho da equipe',
-        'fr': 'Taille de l\'équipe'
+        'en': 'Team size'
       },
       'form.select-placeholder': {
         'es': 'Seleccionar...',
-        'en': 'Select...',
-        'pt': 'Selecionar...',
-        'fr': 'Sélectionner...'
+        'en': 'Select...'
       },
       'form.team-size.1-10': {
         'es': '1-10 personas',
-        'en': '1-10 people',
-        'pt': '1-10 pessoas',
-        'fr': '1-10 personnes'
+        'en': '1-10 people'
       },
       'form.team-size.11-50': {
         'es': '11-50 personas',
-        'en': '11-50 people',
-        'pt': '11-50 pessoas',
-        'fr': '11-50 personnes'
+        'en': '11-50 people'
       },
       'form.team-size.51-200': {
         'es': '51-200 personas',
-        'en': '51-200 people',
-        'pt': '51-200 pessoas',
-        'fr': '51-200 personnes'
+        'en': '51-200 people'
       },
       'form.team-size.201-500': {
         'es': '201-500 personas',
-        'en': '201-500 people',
-        'pt': '201-500 pessoas',
-        'fr': '201-500 personnes'
+        'en': '201-500 people'
       },
       'form.team-size.500+': {
         'es': 'Más de 500 personas',
-        'en': 'More than 500 people',
-        'pt': 'Mais de 500 pessoas',
-        'fr': 'Plus de 500 personnes'
+        'en': 'More than 500 people'
       },
       'form.use-case': {
         'es': '¿Qué quieres optimizar?',
-        'en': 'What do you want to optimize?',
-        'pt': 'O que você quer otimizar?',
-        'fr': 'Que voulez-vous optimiser?'
+        'en': 'What do you want to optimize?'
       },
       'form.use-case.development': {
         'es': 'Desarrollo de software',
-        'en': 'Software development',
-        'pt': 'Desenvolvimento de software',
-        'fr': 'Développement logiciel'
+        'en': 'Software development'
       },
       'form.use-case.sales': {
         'es': 'Procesos de ventas',
-        'en': 'Sales processes',
-        'pt': 'Processos de vendas',
-        'fr': 'Processus de vente'
+        'en': 'Sales processes'
       },
       'form.use-case.marketing': {
         'es': 'Campañas de marketing',
-        'en': 'Marketing campaigns',
-        'pt': 'Campanhas de marketing',
-        'fr': 'Campagnes marketing'
+        'en': 'Marketing campaigns'
       },
       'form.use-case.operations': {
         'es': 'Operaciones generales',
-        'en': 'General operations',
-        'pt': 'Operações gerais',
-        'fr': 'Opérations générales'
+        'en': 'General operations'
       },
       'form.use-case.support': {
         'es': 'Atención al cliente',
-        'en': 'Customer support',
-        'pt': 'Atendimento ao cliente',
-        'fr': 'Support client'
+        'en': 'Customer support'
       },
       'form.use-case.other': {
         'es': 'Otro',
-        'en': 'Other',
-        'pt': 'Outro',
-        'fr': 'Autre'
+        'en': 'Other'
       },
       'form.message': {
         'es': 'Cuéntanos tu principal desafío',
-        'en': 'Tell us your main challenge',
-        'pt': 'Conte-nos seu principal desafio',
-        'fr': 'Parlez-nous de votre principal défi'
+        'en': 'Tell us your main challenge'
       },
       'form.message.placeholder': {
         'es': 'Ej: Perdemos mucho tiempo sincronizando datos entre Slack y Jira...',
-        'en': 'Ex: We waste a lot of time syncing data between Slack and Jira...',
-        'pt': 'Ex: Perdemos muito tempo sincronizando dados entre Slack e Jira...',
-        'fr': 'Ex: Nous perdons beaucoup de temps à synchroniser les données entre Slack et Jira...'
+        'en': 'Ex: We waste a lot of time syncing data between Slack and Jira...'
       },
       'form.message.help': {
         'es': 'Opcional - nos ayuda a preparar una demo más relevante',
-        'en': 'Optional - helps us prepare a more relevant demo',
-        'pt': 'Opcional - nos ajuda a preparar uma demo mais relevante',
-        'fr': 'Optionnel - nous aide à préparer une démo plus pertinente'
+        'en': 'Optional - helps us prepare a more relevant demo'
       },
       'form.newsletter': {
         'es': 'Quiero recibir actualizaciones sobre nuevas integraciones y funcionalidades',
-        'en': 'I want to receive updates about new integrations and features',
-        'pt': 'Quero receber atualizações sobre novas integrações e funcionalidades',
-        'fr': 'Je veux recevoir des mises à jour sur les nouvelles intégrations et fonctionnalités'
+        'en': 'I want to receive updates about new integrations and features'
       },
       'form.privacy.text1': {
         'es': 'Acepto la',
-        'en': 'I accept the',
-        'pt': 'Aceito a',
-        'fr': 'J\'accepte la'
+        'en': 'I accept the'
       },
       'form.privacy.text2': {
         'es': 'y el procesamiento de mis datos',
-        'en': 'and data processing',
-        'pt': 'e o processamento dos meus dados',
-        'fr': 'et le traitement de mes données'
+        'en': 'and data processing'
       },
       'form.privacy.link': {
         'es': 'política de privacidad',
-        'en': 'privacy policy',
-        'pt': 'política de privacidade',
-        'fr': 'politique de confidentialité'
+        'en': 'privacy policy'
       },
       'form.note': {
         'es': 'Te contactaremos en menos de 24 horas',
-        'en': 'We\'ll contact you within 24 hours',
-        'pt': 'Entraremos em contato em menos de 24 horas',
-        'fr': 'Nous vous contacterons dans les 24 heures'
+        'en': 'We\'ll contact you within 24 hours'
       },
       'form.loading': {
         'es': 'Enviando...',
-        'en': 'Sending...',
-        'pt': 'Enviando...',
-        'fr': 'Envoi en cours...'
+        'en': 'Sending...'
       },
 
       // Validaciones
       'validation.required': {
         'es': 'Este campo es obligatorio',
-        'en': 'This field is required',
-        'pt': 'Este campo é obrigatório',
-        'fr': 'Ce champ est requis'
+        'en': 'This field is required'
       },
       'validation.email': {
         'es': 'Por favor ingresa un email válido',
-        'en': 'Please enter a valid email',
-        'pt': 'Por favor, insira um email válido',
-        'fr': 'Veuillez saisir un email valide'
+        'en': 'Please enter a valid email'
       },
       'validation.corporate-email': {
         'es': 'Por favor usa tu email corporativo',
-        'en': 'Please use your corporate email',
-        'pt': 'Por favor, use seu email corporativo',
-        'fr': 'Veuillez utiliser votre email corporatif'
+        'en': 'Please use your corporate email'
       },
 
       // Modales
       'modal.demo.title': {
         'es': 'Ver Demo en Vivo',
-        'en': 'Live Demo',
-        'pt': 'Demo ao Vivo',
-        'fr': 'Démo en Direct'
+        'en': 'Live Demo'
       },
       'modal.demo.description': {
         'es': 'Descubre cómo Nori puede transformar tu productividad en solo 15 minutos',
-        'en': 'Discover how Nori can transform your productivity in just 15 minutes',
-        'pt': 'Descubra como Nori pode transformar sua produtividade em apenas 15 minutos',
-        'fr': 'Découvrez comment Nori peut transformer votre productivité en seulement 15 minutes'
+        'en': 'Discover how Nori can transform your productivity in just 15 minutes'
       },
       'modal.demo.coming-soon': {
         'es': 'Demo interactivo próximamente',
-        'en': 'Interactive demo coming soon',
-        'pt': 'Demo interativo em breve',
-        'fr': 'Démo interactive bientôt disponible'
+        'en': 'Interactive demo coming soon'
       },
       'modal.demo.btn-request': {
         'es': 'Solicitar Demo Personalizada',
-        'en': 'Request Personalized Demo',
-        'pt': 'Solicitar Demo Personalizada',
-        'fr': 'Demander une Démo Personnalisée'
+        'en': 'Request Personalized Demo'
       },
       'modal.success.title': {
         'es': '¡Solicitud Enviada!',
-        'en': 'Request Sent!',
-        'pt': 'Solicitação Enviada!',
-        'fr': 'Demande Envoyée!'
+        'en': 'Request Sent!'
       },
       'modal.success.description': {
         'es': 'Gracias por tu interés en heynori!',
-        'en': 'Thank you for your interest in heynori!',
-        'pt': 'Obrigado pelo seu interesse em heynori!',
-        'fr': 'Merci pour votre intérêt pour heynori!'
+        'en': 'Thank you for your interest in heynori!'
       },
       'modal.success.contact-24h': {
         'es': 'Te contactaremos en 24 horas',
-        'en': 'We\'ll contact you within 24 hours',
-        'pt': 'Entraremos em contato em 24 horas',
-        'fr': 'Nous vous contacterons dans les 24 heures'
+        'en': 'We\'ll contact you within 24 hours'
       },
       'modal.success.contact-desc': {
         'es': 'Nuestro equipo revisará tu información y te contactará pronto',
-        'en': 'Our team will review your information and contact you soon',
-        'pt': 'Nossa equipe revisará suas informações e entrará em contato em breve',
-        'fr': 'Notre équipe examinera vos informations et vous contactera bientôt'
+        'en': 'Our team will review your information and contact you soon'
       },
       'modal.success.demo-ready': {
         'es': 'Demo personalizada lista',
-        'en': 'Personalized demo ready',
-        'pt': 'Demo personalizada pronta',
-        'fr': 'Démo personnalisée prête'
+        'en': 'Personalized demo ready'
       },
       'modal.success.demo-desc': {
         'es': 'Prepararemos una demo específica para tu caso de uso',
-        'en': 'We\'ll prepare a demo specific to your use case',
-        'pt': 'Prepararemos uma demo específica para seu caso de uso',
-        'fr': 'Nous préparerons une démo spécifique à votre cas d\'usage'
+        'en': 'We\'ll prepare a demo specific to your use case'
       },
       'modal.success.setup-24h': {
         'es': 'Setup en 24 horas',
-        'en': '24-hour setup',
-        'pt': 'Configuração em 24 horas',
-        'fr': 'Configuration en 24 heures'
+        'en': '24-hour setup'
       },
       'modal.success.setup-desc': {
         'es': 'Si decides continuar, tendrás Nori funcionando al día siguiente',
-        'en': 'If you decide to continue, you\'ll have Nori running the next day',
-        'pt': 'Se decidir continuar, terá Nori funcionando no dia seguinte',
-        'fr': 'Si vous décidez de continuer, vous aurez Nori opérationnel le lendemain'
+        'en': 'If you decide to continue, you\'ll have Nori running the next day'
       },
 
       // Hero tagline
       'hero.tagline': {
         'es': 'Tu vida. Tu trabajo. Tu ritmo. Potenciado.',
-        'en': 'Your life. Your work. Your rhythm. Enhanced.',
-        'pt': 'Sua vida. Seu trabalho. Seu ritmo. Potencializado.',
-        'fr': 'Votre vie. Votre travail. Votre rythme. Amélioré.'
+        'en': 'Your life. Your work. Your rhythm. Enhanced.'
       },
 
       // Problems Section
       'problems.title': {
         'es': '¿Te suena familiar?',
-        'en': 'Sound familiar?',
-        'pt': 'Soa familiar?',
-        'fr': 'Ça vous dit quelque chose?'
+        'en': 'Sound familiar?'
       },
       'problems.time-lost.title': {
         'es': 'Tiempo perdido',
-        'en': 'Time wasted',
-        'pt': 'Tempo perdido',
-        'fr': 'Temps perdu'
+        'en': 'Time wasted'
       },
       'problems.time-lost.desc': {
         'es': 'Tu equipo pierde horas cada semana cambiando entre aplicaciones y copiando información manualmente',
-        'en': 'Your team wastes hours every week switching between applications and copying information manually',
-        'pt': 'Sua equipe perde horas toda semana mudando entre aplicações e copiando informações manualmente',
-        'fr': 'Votre équipe perd des heures chaque semaine à passer d\'une application à l\'autre et à copier des informations manuellement'
+        'en': 'Your team wastes hours every week switching between applications and copying information manually'
       },
       'problems.visibility.title': {
         'es': 'Falta de visibilidad',
-        'en': 'Lack of visibility',
-        'pt': 'Falta de visibilidade',
-        'fr': 'Manque de visibilité'
+        'en': 'Lack of visibility'
       },
       'problems.visibility.desc': {
         'es': 'Los proyectos se retrasan porque nadie tiene una vista completa del progreso real',
-        'en': 'Projects get delayed because no one has a complete view of real progress',
-        'pt': 'Projetos se atrasam porque ninguém tem uma visão completa do progresso real',
-        'fr': 'Les projets prennent du retard car personne n\'a une vue complète du progrès réel'
+        'en': 'Projects get delayed because no one has a complete view of real progress'
       },
       'problems.talent.title': {
         'es': 'Talento frustrado',
-        'en': 'Frustrated talent',
-        'pt': 'Talento frustrado',
-        'fr': 'Talent frustré'
+        'en': 'Frustrated talent'
       },
       'problems.talent.desc': {
         'es': 'Tus mejores profesionales se agotan con tareas repetitivas que una máquina podría hacer',
-        'en': 'Your best professionals burn out on repetitive tasks that a machine could do',
-        'pt': 'Seus melhores profissionais se esgotam com tarefas repetitivas que uma máquina poderia fazer',
-        'fr': 'Vos meilleurs professionnels s\'épuisent sur des tâches répétitives qu\'une machine pourrait faire'
+        'en': 'Your best professionals burn out on repetitive tasks that a machine could do'
       },
       'problems.decisions.title': {
         'es': 'Decisiones a ciegas',
-        'en': 'Blind decisions',
-        'pt': 'Decisões às cegas',
-        'fr': 'Décisions aveugles'
+        'en': 'Blind decisions'
       },
       'problems.decisions.desc': {
         'es': 'No tienes datos confiables para tomar decisiones estratégicas sobre productividad',
-        'en': 'You don\'t have reliable data to make strategic decisions about productivity',
-        'pt': 'Você não tem dados confiáveis para tomar decisões estratégicas sobre produtividade',
-        'fr': 'Vous n\'avez pas de données fiables pour prendre des décisions stratégiques sur la productivité'
+        'en': 'You don\'t have reliable data to make strategic decisions about productivity'
       },
 
       // Solution Section
       'solution.title': {
         'es': 'Nori es diferente',
-        'en': 'Nori is different',
-        'pt': 'Nori é diferente',
-        'fr': 'Nori est différent'
+        'en': 'Nori is different'
       },
       'solution.subtitle': {
         'es': 'La primera IA que realmente entiende cómo trabaja tu equipo',
-        'en': 'The first AI that truly understands how your team works',
-        'pt': 'A primeira IA que realmente entende como sua equipe trabalha',
-        'fr': 'La première IA qui comprend vraiment comment votre équipe travaille'
+        'en': 'The first AI that truly understands how your team works'
       },
       'solution.connectivity.title': {
         'es': 'Conectividad Sin Límites',
-        'en': 'Limitless Connectivity',
-        'pt': 'Conectividade Sem Limites',
-        'fr': 'Connectivité Sans Limites'
+        'en': 'Limitless Connectivity'
       },
       'solution.connectivity.desc': {
         'es': 'Integra todas tus herramientas en minutos, no meses. APIs nativas y conectores personalizados para sincronización bidireccional en tiempo real.',
-        'en': 'Integrate all your tools in minutes, not months. Native APIs and custom connectors for real-time bidirectional synchronization.',
-        'pt': 'Integre todas as suas ferramentas em minutos, não meses. APIs nativas e conectores personalizados para sincronização bidirecional em tempo real.',
-        'fr': 'Intégrez tous vos outils en minutes, pas en mois. APIs natives et connecteurs personnalisés pour une synchronisation bidirectionnelle en temps réel.'
+        'en': 'Integrate all your tools in minutes, not months. Native APIs and custom connectors for real-time bidirectional synchronization.'
       },
       'solution.connectivity.setup': {
         'es': 'Setup instantáneo',
-        'en': 'Instant setup',
-        'pt': 'Configuração instantânea',
-        'fr': 'Configuration instantanée'
+        'en': 'Instant setup'
       },
       'solution.connectivity.friction': {
         'es': 'Zero fricción para tu equipo',
-        'en': 'Zero friction for your team',
-        'pt': 'Zero atrito para sua equipe',
-        'fr': 'Zéro friction pour votre équipe'
+        'en': 'Zero friction for your team'
       },
       'solution.connectivity.tools': {
         'es': 'Mantén las herramientas que amas',
-        'en': 'Keep the tools you love',
-        'pt': 'Mantenha as ferramentas que você ama',
-        'fr': 'Gardez les outils que vous aimez'
+        'en': 'Keep the tools you love'
       },
       'solution.ai.title': {
         'es': 'IA que Aprende Tu Contexto',
-        'en': 'AI that Learns Your Context',
-        'pt': 'IA que Aprende Seu Contexto',
-        'fr': 'IA qui Apprend Votre Contexte'
+        'en': 'AI that Learns Your Context'
       },
       'solution.ai.desc': {
         'es': 'Mapea automáticamente tus procesos únicos, predice bloqueos antes de que ocurran y sugiere optimizaciones basadas en los patrones de tu equipo.',
-        'en': 'Automatically maps your unique processes, predicts blocks before they occur and suggests optimizations based on your team\'s patterns.',
-        'pt': 'Mapeia automaticamente seus processos únicos, prevê bloqueios antes que ocorram e sugere otimizações baseadas nos padrões da sua equipe.',
-        'fr': 'Cartographie automatiquement vos processus uniques, prédit les blocages avant qu\'ils ne se produisent et suggère des optimisations basées sur les modèles de votre équipe.'
+        'en': 'Automatically maps your unique processes, predicts blocks before they occur and suggests optimizations based on your team\'s patterns.'
       },
       'solution.ai.learning': {
         'es': 'Aprendizaje continuo',
-        'en': 'Continuous learning',
-        'pt': 'Aprendizagem contínua',
-        'fr': 'Apprentissage continu'
+        'en': 'Continuous learning'
       },
       'solution.ai.predictions': {
         'es': 'Predicciones inteligentes',
-        'en': 'Intelligent predictions',
-        'pt': 'Previsões inteligentes',
-        'fr': 'Prédictions intelligentes'
+        'en': 'Intelligent predictions'
       },
       'solution.ai.optimization': {
         'es': 'Optimización automática',
-        'en': 'Automatic optimization',
-        'pt': 'Otimização automática',
-        'fr': 'Optimisation automatique'
+        'en': 'Automatic optimization'
       },
       'solution.automation.title': {
         'es': 'Automatización Inteligente',
-        'en': 'Intelligent Automation',
-        'pt': 'Automação Inteligente',
-        'fr': 'Automatisation Intelligente'
+        'en': 'Intelligent Automation'
       },
       'solution.automation.desc': {
         'es': 'Elimina la mayoría de tareas manuales entre apps, actualiza estados de proyectos automáticamente y genera reportes ejecutivos al instante.',
-        'en': 'Eliminates most manual tasks between apps, automatically updates project statuses and generates executive reports instantly.',
-        'pt': 'Elimina a maioria das tarefas manuais entre apps, atualiza status de projetos automaticamente e gera relatórios executivos instantaneamente.',
-        'fr': 'Élimine la plupart des tâches manuelles entre les applications, met à jour automatiquement les statuts de projet et génère des rapports exécutifs instantanément.'
+        'en': 'Eliminates most manual tasks between apps, automatically updates project statuses and generates executive reports instantly.'
       },
       'solution.automation.workflows': {
         'es': 'Workflows automáticos',
-        'en': 'Automatic workflows',
-        'pt': 'Fluxos de trabalho automáticos',
-        'fr': 'Flux de travail automatiques'
+        'en': 'Automatic workflows'
       },
       'solution.automation.reports': {
         'es': 'Reportes instantáneos',
-        'en': 'Instant reports',
-        'pt': 'Relatórios instantâneos',
-        'fr': 'Rapports instantanés'
+        'en': 'Instant reports'
       },
       'solution.automation.alerts': {
         'es': 'Alertas proactivas',
-        'en': 'Proactive alerts',
-        'pt': 'Alertas proativos',
-        'fr': 'Alertes proactives'
+        'en': 'Proactive alerts'
       },
       'solution.insights.title': {
         'es': 'Insights para Líderes',
-        'en': 'Insights for Leaders',
-        'pt': 'Insights para Líderes',
-        'fr': 'Insights pour Leaders'
+        'en': 'Insights for Leaders'
       },
       'solution.insights.desc': {
         'es': 'Dashboards ejecutivos con métricas de productividad real, identificación de cuellos de botella y benchmarking con equipos de alto rendimiento.',
-        'en': 'Executive dashboards with real productivity metrics, bottleneck identification and benchmarking with high-performance teams.',
-        'pt': 'Dashboards executivos com métricas de produtividade real, identificação de gargalos e benchmarking com equipes de alto desempenho.',
-        'fr': 'Tableaux de bord exécutifs avec des métriques de productivité réelles, identification des goulots d\'étranglement et benchmarking avec des équipes performantes.'
+        'en': 'Executive dashboards with real productivity metrics, bottleneck identification and benchmarking with high-performance teams.'
       },
       'solution.insights.metrics': {
         'es': 'Métricas accionables',
-        'en': 'Actionable metrics',
-        'pt': 'Métricas acionáveis',
-        'fr': 'Métriques exploitables'
+        'en': 'Actionable metrics'
       },
       'solution.insights.roi': {
         'es': 'ROI medible',
-        'en': 'Measurable ROI',
-        'pt': 'ROI mensurável',
-        'fr': 'ROI mesurable'
+        'en': 'Measurable ROI'
       },
       'solution.insights.continuous': {
         'es': 'Optimización continua',
-        'en': 'Continuous optimization',
-        'pt': 'Otimização contínua',
-        'fr': 'Optimisation continue'
+        'en': 'Continuous optimization'
       },
 
       // Benefits Section
       'benefits.title': {
         'es': 'Para equipos que valoran su tiempo',
-        'en': 'For teams that value their time',
-        'pt': 'Para equipes que valorizam seu tempo',
-        'fr': 'Pour les équipes qui valorisent leur temps'
+        'en': 'For teams that value their time'
       },
       'benefits.create.title': {
         'es': 'Más tiempo para crear',
-        'en': 'More time to create',
-        'pt': 'Mais tempo para criar',
-        'fr': 'Plus de temps pour créer'
+        'en': 'More time to create'
       },
       'benefits.create.desc': {
         'es': 'Tu equipo se enfoca en trabajo estratégico, no en copiar y pegar entre herramientas',
-        'en': 'Your team focuses on strategic work, not copying and pasting between tools',
-        'pt': 'Sua equipe se concentra em trabalho estratégico, não em copiar e colar entre ferramentas',
-        'fr': 'Votre équipe se concentre sur le travail stratégique, pas sur copier-coller entre les outils'
+        'en': 'Your team focuses on strategic work, not copying and pasting between tools'
       },
       'benefits.flow.title': {
         'es': 'Proyectos que fluyen',
-        'en': 'Projects that flow',
-        'pt': 'Projetos que fluem',
-        'fr': 'Projets qui coulent'
+        'en': 'Projects that flow'
       },
       'benefits.flow.desc': {
         'es': 'Sincronización automática mantiene a todos alineados sin reuniones innecesarias',
-        'en': 'Automatic synchronization keeps everyone aligned without unnecessary meetings',
-        'pt': 'Sincronização automática mantém todos alinhados sem reuniões desnecessárias',
-        'fr': 'La synchronisation automatique maintient tout le monde aligné sans réunions inutiles'
+        'en': 'Automatic synchronization keeps everyone aligned without unnecessary meetings'
       },
       'benefits.decisions.title': {
         'es': 'Decisiones más inteligentes',
-        'en': 'Smarter decisions',
-        'pt': 'Decisões mais inteligentes',
-        'fr': 'Décisions plus intelligentes'
+        'en': 'Smarter decisions'
       },
       'benefits.decisions.desc': {
         'es': 'Datos en tiempo real para optimizar procesos y anticipar problemas',
-        'en': 'Real-time data to optimize processes and anticipate problems',
-        'pt': 'Dados em tempo real para otimizar processos e antecipar problemas',
-        'fr': 'Données en temps réel pour optimiser les processus et anticiper les problèmes'
+        'en': 'Real-time data to optimize processes and anticipate problems'
       },
       'benefits.scalability.title': {
         'es': 'Escalabilidad sin estrés',
-        'en': 'Scalability without stress',
-        'pt': 'Escalabilidade sem estresse',
-        'fr': 'Évolutivité sans stress'
+        'en': 'Scalability without stress'
       },
       'benefits.scalability.desc': {
         'es': 'Crece tu equipo sin multiplicar la complejidad de tus procesos',
-        'en': 'Grow your team without multiplying the complexity of your processes',
-        'pt': 'Faça sua equipe crescer sem multiplicar a complexidade dos seus processos',
-        'fr': 'Développez votre équipe sans multiplier la complexité de vos processus'
+        'en': 'Grow your team without multiplying the complexity of your processes'
       },
       'benefits.workflow.step1': {
         'es': 'Detecta patrones',
-        'en': 'Detects patterns',
-        'pt': 'Detecta padrões',
-        'fr': 'Détecte les modèles'
+        'en': 'Detects patterns'
       },
       'benefits.workflow.step2': {
         'es': 'Automatiza flujos',
-        'en': 'Automates flows',
-        'pt': 'Automatiza fluxos',
-        'fr': 'Automatise les flux'
+        'en': 'Automates flows'
       },
       'benefits.workflow.step3': {
         'es': 'Optimiza continuamente',
-        'en': 'Continuously optimizes',
-        'pt': 'Otimiza continuamente',
-        'fr': 'Optimise en continu'
+        'en': 'Continuously optimizes'
       },
 
       // Integrations Section
       'integrations.title': {
         'es': 'Se conecta con las herramientas que ya usas',
-        'en': 'Connects with the tools you already use',
-        'pt': 'Conecta com as ferramentas que você já usa',
-        'fr': 'Se connecte avec les outils que vous utilisez déjà'
+        'en': 'Connects with the tools you already use'
       },
       'integrations.subtitle': {
         'es': 'No cambies tu stack, mejóralo',
-        'en': 'Don\'t change your stack, improve it',
-        'pt': 'Não mude seu stack, melhore-o',
-        'fr': 'Ne changez pas votre pile, améliorez-la'
+        'en': 'Don\'t change your stack, improve it'
       },
       'integrations.communication': {
         'es': 'Comunicación',
-        'en': 'Communication',
-        'pt': 'Comunicação',
-        'fr': 'Communication'
+        'en': 'Communication'
       },
       'integrations.project-management': {
         'es': 'Gestión de Proyectos',
-        'en': 'Project Management',
-        'pt': 'Gestão de Projetos',
-        'fr': 'Gestion de Projet'
+        'en': 'Project Management'
       },
       'integrations.development': {
         'es': 'Desarrollo',
-        'en': 'Development',
-        'pt': 'Desenvolvimento',
-        'fr': 'Développement'
+        'en': 'Development'
       },
       'integrations.crm-sales': {
         'es': 'CRM & Ventas',
-        'en': 'CRM & Sales',
-        'pt': 'CRM & Vendas',
-        'fr': 'CRM & Ventes'
+        'en': 'CRM & Sales'
       },
       'integrations.note': {
         'es': '+ Más de 100 integraciones adicionales',
-        'en': '+ More than 100 additional integrations',
-        'pt': '+ Mais de 100 integrações adicionais',
-        'fr': '+ Plus de 100 intégrations supplémentaires'
+        'en': '+ More than 100 additional integrations'
       },
 
       // CTA Section
       'cta.title': {
         'es': 'Únete al futuro del trabajo',
-        'en': 'Join the future of work',
-        'pt': 'Junte-se ao futuro do trabalho',
-        'fr': 'Rejoignez l\'avenir du travail'
+        'en': 'Join the future of work'
       },
       'cta.subtitle': {
         'es': 'Acceso anticipado limitado para equipos que quieren ser pioneros en productividad inteligente',
-        'en': 'Limited early access for teams that want to be pioneers in intelligent productivity',
-        'pt': 'Acesso antecipado limitado para equipes que querem ser pioneiras em produtividade inteligente',
-        'fr': 'Accès anticipé limité pour les équipes qui veulent être pionnières en productivité intelligente'
+        'en': 'Limited early access for teams that want to be pioneers in intelligent productivity'
       },
       'cta.btn-access': {
         'es': 'Solicitar Acceso Anticipado',
-        'en': 'Request Early Access',
-        'pt': 'Solicitar Acesso Antecipado',
-        'fr': 'Demander l\'Accès Anticipé'
+        'en': 'Request Early Access'
       },
       'cta.btn-call': {
         'es': 'Agendar Llamada',
-        'en': 'Schedule Call',
-        'pt': 'Agendar Chamada',
-        'fr': 'Programmer un Appel'
+        'en': 'Schedule Call'
       },
       'cta.feature.setup': {
         'es': 'Setup personalizado incluido',
-        'en': 'Personalized setup included',
-        'pt': 'Configuração personalizada incluída',
-        'fr': 'Configuration personnalisée incluse'
+        'en': 'Personalized setup included'
       },
       'cta.feature.support': {
         'es': 'Soporte dedicado',
-        'en': 'Dedicated support',
-        'pt': 'Suporte dedicado',
-        'fr': 'Support dédié'
+        'en': 'Dedicated support'
       },
       'cta.feature.roadmap': {
         'es': 'Influencia en roadmap',
-        'en': 'Roadmap influence',
-        'pt': 'Influência no roadmap',
-        'fr': 'Influence sur la feuille de route'
+        'en': 'Roadmap influence'
       },
 
       // Contact Section
       'contact.title': {
         'es': '¿Listo para transformar tu productividad?',
-        'en': 'Ready to transform your productivity?',
-        'pt': 'Pronto para transformar sua produtividade?',
-        'fr': 'Prêt à transformer votre productivité?'
+        'en': 'Ready to transform your productivity?'
       },
       'contact.subtitle': {
         'es': 'Cuéntanos sobre tu equipo y te mostraremos cómo Nori puede revolucionar tu flujo de trabajo en menos de 30 días.',
-        'en': 'Tell us about your team and we\'ll show you how Nori can revolutionize your workflow in less than 30 days.',
-        'pt': 'Conte-nos sobre sua equipe e mostraremos como Nori pode revolucionar seu fluxo de trabalho em menos de 30 dias.',
-        'fr': 'Parlez-nous de votre équipe et nous vous montrerons comment Nori peut révolutionner votre flux de travail en moins de 30 jours.'
+        'en': 'Tell us about your team and we\'ll show you how Nori can revolutionize your workflow in less than 30 days.'
       },
       'contact.feature.setup.title': {
         'es': 'Setup en 24 horas',
-        'en': '24-hour setup',
-        'pt': 'Configuração em 24 horas',
-        'fr': 'Configuration en 24 heures'
+        'en': '24-hour setup'
       },
       'contact.feature.setup.desc': {
         'es': 'Implementación express sin interrumpir tu trabajo',
-        'en': 'Express implementation without interrupting your work',
-        'pt': 'Implementação expressa sem interromper seu trabalho',
-        'fr': 'Implémentation express sans interrompre votre travail'
+        'en': 'Express implementation without interrupting your work'
       },
       'contact.feature.security.title': {
         'es': 'Seguridad enterprise',
-        'en': 'Enterprise security',
-        'pt': 'Segurança enterprise',
-        'fr': 'Sécurité entreprise'
+        'en': 'Enterprise security'
       },
       'contact.feature.security.desc': {
         'es': 'SOC2, GDPR compliance y encriptación end-to-end',
-        'en': 'SOC2, GDPR compliance and end-to-end encryption',
-        'pt': 'SOC2, conformidade GDPR e criptografia end-to-end',
-        'fr': 'SOC2, conformité GDPR et chiffrement end-to-end'
+        'en': 'SOC2, GDPR compliance and end-to-end encryption'
       },
       'contact.feature.support247.title': {
         'es': 'Soporte 24/7',
-        'en': '24/7 Support',
-        'pt': 'Suporte 24/7',
-        'fr': 'Support 24/7'
+        'en': '24/7 Support'
       },
       'contact.feature.support247.desc': {
         'es': 'Equipo dedicado para resolver cualquier duda',
-        'en': 'Dedicated team to resolve any questions',
-        'pt': 'Equipe dedicada para resolver qualquer dúvida',
-        'fr': 'Équipe dédiée pour résoudre toute question'
+        'en': 'Dedicated team to resolve any questions'
       },
 
       // Footer
       'footer.product': {
         'es': 'Producto',
-        'en': 'Product',
-        'pt': 'Produto',
-        'fr': 'Produit'
+        'en': 'Product'
       },
       'footer.how-it-works': {
         'es': 'Cómo Funciona',
-        'en': 'How It Works',
-        'pt': 'Como Funciona',
-        'fr': 'Comment Ça Marche'
+        'en': 'How It Works'
       },
       'footer.integrations': {
         'es': 'Integraciones',
-        'en': 'Integrations',
-        'pt': 'Integrações',
-        'fr': 'Intégrations'
+        'en': 'Integrations'
       },
       'footer.security': {
         'es': 'Seguridad',
-        'en': 'Security',
-        'pt': 'Segurança',
-        'fr': 'Sécurité'
+        'en': 'Security'
       },
       'footer.roadmap': {
         'es': 'Roadmap',
-        'en': 'Roadmap',
-        'pt': 'Roadmap',
-        'fr': 'Feuille de Route'
+        'en': 'Roadmap'
       },
       'footer.company': {
         'es': 'Empresa',
-        'en': 'Company',
-        'pt': 'Empresa',
-        'fr': 'Entreprise'
+        'en': 'Company'
       },
       'footer.about-us': {
         'es': 'Sobre Nosotros',
-        'en': 'About Us',
-        'pt': 'Sobre Nós',
-        'fr': 'À Propos'
+        'en': 'About Us'
       },
       'footer.careers': {
         'es': 'Carreras',
-        'en': 'Careers',
-        'pt': 'Carreiras',
-        'fr': 'Carrières'
+        'en': 'Careers'
       },
       'footer.blog': {
         'es': 'Blog',
-        'en': 'Blog',
-        'pt': 'Blog',
-        'fr': 'Blog'
+        'en': 'Blog'
       },
       'footer.press': {
         'es': 'Prensa',
-        'en': 'Press',
-        'pt': 'Imprensa',
-        'fr': 'Presse'
+        'en': 'Press'
       },
       'footer.support': {
         'es': 'Soporte',
-        'en': 'Support',
-        'pt': 'Suporte',
-        'fr': 'Support'
+        'en': 'Support'
       },
       'footer.help-center': {
         'es': 'Centro de Ayuda',
-        'en': 'Help Center',
-        'pt': 'Central de Ajuda',
-        'fr': 'Centre d\'Aide'
+        'en': 'Help Center'
       },
       'footer.documentation': {
         'es': 'Documentación',
-        'en': 'Documentation',
-        'pt': 'Documentação',
-        'fr': 'Documentation'
+        'en': 'Documentation'
       },
       'footer.status': {
         'es': 'Status',
-        'en': 'Status',
-        'pt': 'Status',
-        'fr': 'Statut'
+        'en': 'Status'
       },
       'footer.contact': {
         'es': 'Contacto',
-        'en': 'Contact',
-        'pt': 'Contato',
-        'fr': 'Contact'
+        'en': 'Contact'
       },
       'footer.copyright': {
         'es': '© 2024 heynori! Todos los derechos reservados.',
-        'en': '© 2024 heynori! All rights reserved.',
-        'pt': '© 2024 heynori! Todos os direitos reservados.',
-        'fr': '© 2024 heynori! Tous droits réservés.'
+        'en': '© 2024 heynori! All rights reserved.'
       },
       'footer.privacy': {
         'es': 'Privacidad',
-        'en': 'Privacy',
-        'pt': 'Privacidade',
-        'fr': 'Confidentialité'
+        'en': 'Privacy'
       },
       'footer.terms': {
         'es': 'Términos',
-        'en': 'Terms',
-        'pt': 'Termos',
-        'fr': 'Conditions'
+        'en': 'Terms'
       },
       'footer.cookies': {
         'es': 'Cookies',
-        'en': 'Cookies',
-        'pt': 'Cookies',
-        'fr': 'Cookies'
+        'en': 'Cookies'
       },
 
       // Easter eggs
       'easter.rainbow-activated': {
         'es': '🌈 ¡Modo arcoíris activado! 🦄',
-        'en': '🌈 Rainbow mode activated! 🦄',
-        'pt': '🌈 Modo arco-íris ativado! 🦄',
-        'fr': '🌈 Mode arc-en-ciel activé! 🦄'
+        'en': '🌈 Rainbow mode activated! 🦄'
       },
       'easter.rainbow-disabled': {
         'es': 'Modo arcoíris desactivado',
-        'en': 'Rainbow mode disabled',
-        'pt': 'Modo arco-íris desativado',
-        'fr': 'Mode arc-en-ciel désactivé'
+        'en': 'Rainbow mode disabled'
       }
     };
   }
@@ -1016,8 +736,6 @@ class I18nSystem {
     selector.innerHTML = `
       <button class="lang-btn" data-lang="es" title="Español">🇪🇸</button>
       <button class="lang-btn" data-lang="en" title="English">🇺🇸</button>
-      <button class="lang-btn" data-lang="pt" title="Português">🇧🇷</button>
-      <button class="lang-btn" data-lang="fr" title="Français">🇫🇷</button>
     `;
 
     // Event listeners
@@ -1042,15 +760,11 @@ class I18nSystem {
     const titles = {
       'es': 'heynori! - IA que realmente entiende cómo trabajas',
       'en': 'heynori! - AI that truly understands how you work',
-      'pt': 'heynori! - IA que realmente entende como você trabalha',
-      'fr': 'heynori! - IA qui comprend vraiment comment vous travaillez'
     };
 
     const descriptions = {
       'es': 'Nori conecta todas tus herramientas de trabajo para eliminar tareas repetitivas y multiplicar la productividad de tu equipo.',
       'en': 'Nori connects all your work tools to eliminate repetitive tasks and multiply your team\'s productivity.',
-      'pt': 'Nori conecta todas as suas ferramentas de trabalho para eliminar tarefas repetitivas e multiplicar a produtividade da sua equipe.',
-      'fr': 'Nori connecte tous vos outils de travail pour éliminer les tâches répétitives et multiplier la productivité de votre équipe.'
     };
 
     document.title = titles[this.currentLanguage];
