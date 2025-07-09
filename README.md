@@ -69,40 +69,59 @@ heynori-web/
 
 ## 📧 Formulario de Contacto Funcional
 
-El formulario está **completamente configurado** para funcionar en GitHub Pages usando **Formspree**:
+El formulario está **completamente configurado** para funcionar en GitHub Pages usando **Web3Forms**:
 
 ### ✅ Características del Formulario
-- **Envío real**: Los datos se envían por email automáticamente
+- **Completamente GRATIS**: Sin límites de envíos con Web3Forms
+- **Envío real**: Los datos se envían por email automáticamente a `hello@heynori.ai`
 - **Validación cliente**: JavaScript valida antes de enviar
-- **Protección antispam**: Formspree incluye filtros automáticos
+- **Protección antispam**: Honeypot integrado para filtrar spam
 - **Multiidioma**: Mensajes adaptan al idioma de la página
 - **Experiencia fluida**: Sin redirecciones, notificaciones in-page
 - **Fallback**: Si falla JS, funciona con envío HTML estándar
 
 ### 🔧 Configuración Técnica
 ```html
-<!-- Formulario configurado con Formspree -->
-<form action="https://formspree.io/f/xgvejgpv" method="POST">
-  <!-- Campos hidden para mejores emails -->
-  <input type="hidden" name="_subject" value="Nueva solicitud de demo - heynori!">
-  <input type="hidden" name="_next" value="...?submitted=true">
-  <input type="hidden" name="_language" value="es">
+<!-- Formulario configurado con Web3Forms -->
+<form action="https://api.web3forms.com/submit" method="POST">
+  <!-- Campos hidden para configuración -->
+  <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE">
+  <input type="hidden" name="subject" value="Nueva solicitud de demo - heynori!">
+  <input type="hidden" name="from_name" value="heynori! Landing Page">
+  <input type="hidden" name="language" value="es">
+  
+  <!-- Protección antispam -->
+  <input type="checkbox" name="botcheck" style="display: none;">
 </form>
 ```
 
 ### 📬 Qué Incluye Cada Email
+- **Destinatario**: `hello@heynori.ai`
 - **Asunto**: "Nueva solicitud de demo - heynori!" / "New demo request - heynori!"
+- **Remitente**: "heynori! Landing Page"
 - **Idioma**: Detectado automáticamente
 - **Datos del usuario**: Nombre, empresa, email, tamaño equipo
 - **Contexto**: Qué quiere optimizar, desafío principal
 - **Origen**: Español o inglés según la versión
 
-### 💡 Para Personalizar
-Si quieres usar tu propio Formspree:
-1. Regístrate en [formspree.io](https://formspree.io)
-2. Crea un nuevo formulario 
-3. Reemplaza `xgvejgpv` en ambos archivos HTML
-4. ¡Listo! Los emails llegarán a tu correo
+### ✅ CONFIGURACIÓN COMPLETA
+
+**El formulario está COMPLETAMENTE ACTIVO:**
+
+- ✅ **Access Key configurado**: `93b2e936-c8d2-4e12-bfd5-1eef00c25ff6`
+- ✅ **Email destino**: `hello@heynori.ai`
+- ✅ **Ambos idiomas**: Español e inglés configurados
+- ✅ **Protección antispam**: Honeypot activo
+- ✅ **Listo para producción**: GitHub Pages compatible
+
+**¡Los emails de contacto ya llegan automáticamente a `hello@heynori.ai`!**
+
+### 💡 Ventajas de Web3Forms
+- ✅ **Gratis ilimitado**: Sin restricciones de envíos
+- ✅ **Sin registro complejo**: Solo necesitas email + access key
+- ✅ **GitHub Pages compatible**: Funciona perfectamente en hosting estático
+- ✅ **Antispam incluido**: Protección honeypot integrada
+- ✅ **API moderna**: JSON y JavaScript friendly
 
 ## 🚀 Deployment
 

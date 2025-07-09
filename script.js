@@ -355,17 +355,23 @@ class HeyNoriApp {
     btnLoading.style.display = 'flex';
 
     try {
-      // Real form submission to Formspree
+      // Real form submission to Web3Forms
       const formData = new FormData(form);
-      const response = await fetch(form.action, {
+      const object = Object.fromEntries(formData);
+      const json = JSON.stringify(object);
+      
+      const response = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
-        body: formData,
         headers: {
+          'Content-Type': 'application/json',
           'Accept': 'application/json'
-        }
+        },
+        body: json
       });
 
-      if (response.ok) {
+      const result = await response.json();
+      
+      if (response.status === 200) {
         // Success
         const successMessage = document.documentElement.lang === 'es' 
           ? '¡Gracias! Te contactaremos pronto' 
@@ -521,9 +527,9 @@ class HeyNoriApp {
     // Keyboard navigation for mobile menu
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
-        this.closeMobileMenu();
-      }
-    });
+          this.closeMobileMenu();
+        }
+      });
 
     // Focus management for modals
     this.setupModalFocusManagement();
@@ -595,7 +601,7 @@ class HeyNoriApp {
 
     // Auto-close after duration
     if (duration > 0) {
-      setTimeout(() => {
+          setTimeout(() => {
         this.closeNotification(notification);
       }, duration);
     }
@@ -768,7 +774,7 @@ class HeyNoriApp {
                 callback: function(value) {
                   return value + 'h';
                 },
-                font: {
+        font: {
                   weight: '500'
                 }
               }
@@ -778,7 +784,7 @@ class HeyNoriApp {
                 display: false
               },
               border: {
-                color: '#1a1a1a',
+          color: '#1a1a1a',
                 width: 2
               },
               ticks: {
@@ -871,7 +877,7 @@ class HeyNoriApp {
                 lineWidth: 1
               },
               border: {
-                color: '#1a1a1a',
+          color: '#1a1a1a',
                 width: 2
               },
               ticks: {
@@ -1030,7 +1036,7 @@ class HeyNoriApp {
           <i class="fas fa-play-circle" style="font-size: 4rem; color: var(--accent-red);"></i>
           <p>Demo interactivo próximamente</p>
         </div>
-      </div>
+        </div>
       <div class="modal-footer">
         <button class="btn btn-primary" onclick="window.heyNoriApp.scrollToContact(); window.heyNoriApp.closeModal();">
           <i class="fas fa-calendar-alt" aria-hidden="true"></i>
@@ -1048,8 +1054,8 @@ class HeyNoriApp {
           <i class="fas fa-check-circle" style="font-size: 4rem; color: var(--success); margin-bottom: 1rem;"></i>
           <h2>¡Solicitud Enviada!</h2>
           <p>Gracias por tu interés en heynori!</p>
-        </div>
       </div>
+          </div>
       <div class="modal-content-body">
         <div class="success-features">
           <div class="success-feature">
@@ -1057,8 +1063,8 @@ class HeyNoriApp {
             <div>
               <h3>Te contactaremos en 24 horas</h3>
               <p>Nuestro equipo revisará tu información y te contactará pronto</p>
-            </div>
-          </div>
+        </div>
+      </div>
           <div class="success-feature">
             <i class="fas fa-calendar-check" aria-hidden="true"></i>
             <div>

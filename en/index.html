@@ -553,11 +553,16 @@
                     </div>
                     
                     <div class="contact-form-container">
-                                        <form class="contact-form" id="contactForm" action="https://formspree.io/f/xgvejgpv" method="POST" novalidate aria-labelledby="contact-title">
-                    <!-- Formspree configuration -->
-                    <input type="hidden" name="_subject" value="New demo request - heynori!">
-                    <input type="hidden" name="_next" value="https://heynori.github.io/heynori-web/en/?submitted=true">
-                    <input type="hidden" name="_language" value="en">
+                                                <form class="contact-form" id="contactForm" action="https://api.web3forms.com/submit" method="POST" novalidate aria-labelledby="contact-title">
+          <!-- Web3Forms configuration -->
+          <input type="hidden" name="access_key" value="93b2e936-c8d2-4e12-bfd5-1eef00c25ff6">
+          <input type="hidden" name="subject" value="New demo request - heynori!">
+          <input type="hidden" name="from_name" value="heynori! Landing Page">
+          <input type="hidden" name="redirect" value="https://heynori.github.io/heynori-web/en/?submitted=true">
+          <input type="hidden" name="language" value="en">
+          
+          <!-- Honeypot spam protection -->
+          <input type="checkbox" name="botcheck" style="display: none;" tabindex="-1" autocomplete="off">
                     
                     <div class="form-group">
                                 <label for="fullName" class="form-label">Full name *</label>
