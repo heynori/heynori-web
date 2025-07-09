@@ -1,0 +1,1240 @@
+// Modern JavaScript ES6+ for heynori! landing page
+class HeyNoriApp {
+  constructor() {
+    this.konamiCode = [
+      'ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown',
+      'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight',
+      'KeyB', 'KeyA'
+    ];
+    this.konamiIndex = 0;
+    this.isRainbowMode = false;
+    this.charts = new Map();
+    this.observers = new Map();
+    
+    this.init();
+  }
+
+  // Initialize all functionality
+  init() {
+    this.setupEventListeners();
+    this.setupIntersectionObserver();
+    this.setupLazyLoading();
+    this.setupSmoothScrolling();
+    this.setupTabSwitching();
+    this.setupContactForm();
+    this.setupKonamiCode();
+    this.setupAccessibility();
+    this.setupNotifications();
+    this.initializeCharts();
+    this.handleURLParameters();
+  }
+
+  // Setup all event listeners
+  setupEventListeners() {
+    // Mobile menu toggle
+    const menuToggle = document.querySelector('.menu-toggle');
+    const mobileMenu = document.querySelector('.mobile-menu');
+    
+    if (menuToggle && mobileMenu) {
+      menuToggle.addEventListener('click', () => this.toggleMobileMenu());
+      
+      // Close mobile menu when clicking outside
+      mobileMenu.addEventListener('click', (e) => {
+        if (e.target === mobileMenu) {
+          this.closeMobileMenu();
+        }
+      });
+
+      // Close mobile menu when clicking links
+      const mobileLinks = document.querySelectorAll('.mobile-link, .mobile-cta');
+      mobileLinks.forEach(link => {
+        link.addEventListener('click', () => this.closeMobileMenu());
+      });
+    }
+
+    // CTA button clicks
+    const ctaButtons = document.querySelectorAll('.btn-primary:not(.form-submit), .nav-cta, .mobile-cta');
+    ctaButtons.forEach(button => {
+      button.addEventListener('click', (e) => this.handleCTAClick(e));
+    });
+
+    // Demo button clicks
+    const demoButtons = document.querySelectorAll('.btn-secondary, [data-action="live-demo"]');
+    demoButtons.forEach(button => {
+      button.addEventListener('click', (e) => this.handleDemoClick(e));
+    });
+
+    // Modal close events
+    document.addEventListener('click', (e) => {
+      if (e.target.matches('.modal-overlay, .modal-close')) {
+        this.closeModal();
+      }
+    });
+
+    // Escape key handlers
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        this.closeMobileMenu();
+        this.closeModal();
+      }
+    });
+
+    // Prevent form submission on demo buttons
+    document.addEventListener('click', (e) => {
+      if (e.target.matches('[data-action="demo-request"]')) {
+        e.preventDefault();
+        this.scrollToContact();
+      }
+    });
+  }
+
+  // Mobile menu functionality
+  toggleMobileMenu() {
+    const mobileMenu = document.querySelector('.mobile-menu');
+    const menuToggle = document.querySelector('.menu-toggle');
+    
+    if (mobileMenu.classList.contains('active')) {
+      this.closeMobileMenu();
+    } else {
+      this.openMobileMenu();
+    }
+  }
+
+  openMobileMenu() {
+    const mobileMenu = document.querySelector('.mobile-menu');
+    const menuToggle = document.querySelector('.menu-toggle');
+    
+    mobileMenu.style.display = 'block';
+    mobileMenu.setAttribute('aria-hidden', 'false');
+    setTimeout(() => {
+      mobileMenu.classList.add('active');
+    }, 10);
+    
+    menuToggle.classList.add('active');
+    menuToggle.setAttribute('aria-expanded', 'true');
+    document.body.style.overflow = 'hidden';
+  }
+
+  closeMobileMenu() {
+    const mobileMenu = document.querySelector('.mobile-menu');
+    const menuToggle = document.querySelector('.menu-toggle');
+    
+    mobileMenu.classList.remove('active');
+    mobileMenu.setAttribute('aria-hidden', 'true');
+    menuToggle.classList.remove('active');
+    menuToggle.setAttribute('aria-expanded', 'false');
+    
+    setTimeout(() => {
+      mobileMenu.style.display = 'none';
+    }, 300);
+    
+    document.body.style.overflow = '';
+  }
+
+  // Lazy loading for images
+  setupLazyLoading() {
+    if ('IntersectionObserver' in window) {
+      const imageObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const img = entry.target;
+            if (img.dataset.src) {
+              img.src = img.dataset.src;
+              img.removeAttribute('data-src');
+            }
+            imageObserver.unobserve(img);
+          }
+        });
+      }, {
+        rootMargin: '50px'
+      });
+
+      // Observe all images with data-src
+      document.querySelectorAll('img[data-src]').forEach(img => {
+        imageObserver.observe(img);
+      });
+
+      this.observers.set('images', imageObserver);
+    }
+  }
+
+  // Intersection Observer for scroll animations
+  setupIntersectionObserver() {
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          
+          // Trigger chart animations when they come into view
+          if (entry.target.classList.contains('network-diagram')) {
+            this.animateChart(entry.target.id);
+          }
+        }
+      });
+    }, observerOptions);
+
+    // Add fade-in class to elements that should animate
+    const animatedElements = document.querySelectorAll(
+      '.problem-card, .feature, .benefit-item, .use-case-card, .integration-category, .contact-feature'
+    );
+    
+    animatedElements.forEach(el => {
+      el.classList.add('fade-in');
+      observer.observe(el);
+    });
+
+    this.observers.set('animations', observer);
+  }
+
+  // Smooth scrolling for anchor links
+  setupSmoothScrolling() {
+    document.addEventListener('click', (e) => {
+      const link = e.target.closest('a[href^="#"]');
+      if (link) {
+        e.preventDefault();
+        const targetId = link.getAttribute('href').substring(1);
+        const target = document.getElementById(targetId);
+        
+        if (target) {
+          const headerHeight = document.querySelector('.header').offsetHeight;
+          const targetPosition = target.offsetTop - headerHeight - 20;
+          
+          window.scrollTo({
+            top: targetPosition,
+            behavior: 'smooth'
+          });
+
+          // Update focus for accessibility
+          target.setAttribute('tabindex', '-1');
+          target.focus();
+          setTimeout(() => target.removeAttribute('tabindex'), 1000);
+        }
+      }
+    });
+  }
+
+  // Tab switching functionality
+  setupTabSwitching() {
+    const tabButtons = document.querySelectorAll('.tab-button');
+    const tabContents = document.querySelectorAll('.tab-content');
+
+    tabButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const targetTab = button.dataset.tab;
+        
+        // Update buttons
+        tabButtons.forEach(btn => {
+          btn.classList.remove('active');
+          btn.setAttribute('aria-selected', 'false');
+        });
+        button.classList.add('active');
+        button.setAttribute('aria-selected', 'true');
+        
+        // Update content
+        tabContents.forEach(content => {
+          content.classList.remove('active');
+          content.setAttribute('aria-hidden', 'true');
+        });
+        
+        const targetContent = document.getElementById(targetTab);
+        if (targetContent) {
+          targetContent.classList.add('active');
+          targetContent.setAttribute('aria-hidden', 'false');
+          
+          // Recreate chart for the active tab
+          this.recreateChartForTab(targetTab);
+        }
+      });
+    });
+  }
+
+  // Contact form with validation
+  setupContactForm() {
+    const form = document.getElementById('contactForm');
+    if (!form) return;
+
+    // Real-time validation
+    const inputs = form.querySelectorAll('input, select, textarea');
+    inputs.forEach(input => {
+      input.addEventListener('blur', () => this.validateField(input));
+      input.addEventListener('input', () => {
+        if (input.classList.contains('error')) {
+          this.validateField(input);
+        }
+      });
+    });
+
+    // Form submission
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      await this.handleFormSubmission(form);
+    });
+  }
+
+  // Field validation
+  validateField(field) {
+    const errorElement = document.getElementById(`${field.name}-error`);
+    let isValid = true;
+    let errorMessage = '';
+
+    // Required field validation
+    if (field.hasAttribute('required') && !field.value.trim()) {
+      isValid = false;
+      errorMessage = 'Este campo es obligatorio';
+    }
+
+    // Email validation
+    if (field.type === 'email' && field.value.trim()) {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(field.value)) {
+        isValid = false;
+        errorMessage = 'Por favor ingresa un email válido';
+      }
+    }
+
+    // Company email validation (no personal domains)
+    if (field.name === 'email' && field.value.trim()) {
+      const personalDomains = ['gmail.com', 'yahoo.com', 'hotmail.com', 'outlook.com'];
+      const domain = field.value.split('@')[1]?.toLowerCase();
+      if (personalDomains.includes(domain)) {
+        isValid = false;
+        errorMessage = 'Por favor usa tu email corporativo';
+      }
+    }
+
+    // Update UI
+    if (isValid) {
+      field.classList.remove('error');
+      if (errorElement) {
+        errorElement.textContent = '';
+        errorElement.classList.remove('show');
+      }
+    } else {
+      field.classList.add('error');
+      if (errorElement) {
+        errorElement.textContent = errorMessage;
+        errorElement.classList.add('show');
+      }
+    }
+
+    return isValid;
+  }
+
+  // Form submission handler
+  async handleFormSubmission(form) {
+    const submitBtn = form.querySelector('.form-submit');
+    const btnText = submitBtn.querySelector('.btn-text');
+    const btnLoading = submitBtn.querySelector('.btn-loading');
+
+    // Validate all fields
+    const inputs = form.querySelectorAll('input[required], select[required]');
+    let isFormValid = true;
+
+    inputs.forEach(input => {
+      if (!this.validateField(input)) {
+        isFormValid = false;
+      }
+    });
+
+    if (!isFormValid) {
+      const errorMessage = document.documentElement.lang === 'es' 
+        ? 'Por favor corrige los errores en el formulario' 
+        : 'Please correct the errors in the form';
+      this.showNotification(errorMessage, 'error');
+      return;
+    }
+
+    // Show loading state
+    submitBtn.disabled = true;
+    btnText.style.display = 'none';
+    btnLoading.style.display = 'flex';
+
+    try {
+      // Real form submission to Formspree
+      const formData = new FormData(form);
+      const response = await fetch(form.action, {
+        method: 'POST',
+        body: formData,
+        headers: {
+          'Accept': 'application/json'
+        }
+      });
+
+      if (response.ok) {
+        // Success
+        const successMessage = document.documentElement.lang === 'es' 
+          ? '¡Gracias! Te contactaremos pronto' 
+          : 'Thank you! We\'ll contact you soon';
+        this.showNotification(successMessage, 'success');
+        form.reset();
+        
+        // Trigger confetti for successful submission
+        this.triggerConfetti();
+
+        // Show success modal
+        this.showSuccessModal();
+        
+        // Track successful submission
+        this.trackEvent('form_submitted', {
+          language: document.documentElement.lang || 'es',
+          form_id: 'contact_form'
+        });
+      } else {
+        throw new Error('Form submission failed');
+      }
+      
+    } catch (error) {
+      console.error('Form submission error:', error);
+      const errorMessage = document.documentElement.lang === 'es' 
+        ? 'Error al enviar el formulario. Inténtalo de nuevo' 
+        : 'Error sending form. Please try again';
+      this.showNotification(errorMessage, 'error');
+    } finally {
+      // Reset button state
+      submitBtn.disabled = false;
+      btnText.style.display = 'inline-flex';
+      btnLoading.style.display = 'none';
+    }
+  }
+
+  // Handle URL parameters (e.g., ?submitted=true)
+  handleURLParameters() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const submitted = urlParams.get('submitted');
+    
+    if (submitted === 'true') {
+      // Show success message for redirected users
+      const successMessage = document.documentElement.lang === 'es' 
+        ? '¡Formulario enviado exitosamente! Te contactaremos pronto.' 
+        : 'Form submitted successfully! We\'ll contact you soon.';
+      
+      setTimeout(() => {
+        this.showNotification(successMessage, 'success', 8000);
+        this.triggerConfetti();
+      }, 1000);
+      
+      // Clean URL
+      window.history.replaceState({}, document.title, window.location.pathname);
+    }
+  }
+
+  // Konami code easter egg
+  setupKonamiCode() {
+    document.addEventListener('keydown', (e) => {
+      if (e.code === this.konamiCode[this.konamiIndex]) {
+        this.konamiIndex++;
+        
+        if (this.konamiIndex === this.konamiCode.length) {
+          this.activateRainbowMode();
+          this.konamiIndex = 0;
+        }
+      } else {
+        this.konamiIndex = 0;
+      }
+    });
+  }
+
+  // Activate rainbow mode
+  activateRainbowMode() {
+    if (this.isRainbowMode) return;
+    
+    this.isRainbowMode = true;
+    document.body.classList.add('rainbow-mode');
+    
+    // Trigger confetti
+    this.triggerConfetti();
+    
+    // Trigger vibration
+    this.triggerVibration();
+    
+    this.showNotification('🌈 ¡Modo arcoíris activado! 🦄', 'success');
+    
+    // Auto-disable after 10 seconds
+    setTimeout(() => {
+      document.body.classList.remove('rainbow-mode');
+      this.isRainbowMode = false;
+      this.showNotification('Modo arcoíris desactivado', 'info');
+    }, 10000);
+  }
+
+  // Trigger confetti effect
+  triggerConfetti() {
+    if (typeof confetti !== 'undefined') {
+      // Multiple bursts for better effect
+      const colors = ['#FF3947', '#F4E6D1', '#1a1a1a', '#25d366'];
+      
+      confetti({
+        particleCount: 100,
+        spread: 70,
+        origin: { y: 0.6 },
+        colors: colors
+      });
+      
+      setTimeout(() => {
+        confetti({
+          particleCount: 50,
+          spread: 60,
+          origin: { x: 0.25, y: 0.7 },
+          colors: colors
+        });
+      }, 250);
+      
+      setTimeout(() => {
+        confetti({
+          particleCount: 50,
+          spread: 60,
+          origin: { x: 0.75, y: 0.7 },
+          colors: colors
+        });
+      }, 500);
+    }
+  }
+
+  // Trigger vibration (if supported)
+  triggerVibration() {
+    if ('vibrate' in navigator) {
+      navigator.vibrate([100, 50, 100]);
+    }
+  }
+
+  // Accessibility enhancements
+  setupAccessibility() {
+    // Skip link functionality
+    const skipLink = document.querySelector('.skip-link');
+    if (skipLink) {
+      skipLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        const target = document.getElementById('main-content');
+        if (target) {
+          target.setAttribute('tabindex', '-1');
+          target.focus();
+          setTimeout(() => target.removeAttribute('tabindex'), 1000);
+        }
+      });
+    }
+
+    // Keyboard navigation for mobile menu
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        this.closeMobileMenu();
+      }
+    });
+
+    // Focus management for modals
+    this.setupModalFocusManagement();
+  }
+
+  // Modal focus management
+  setupModalFocusManagement() {
+    const modal = document.getElementById('modalOverlay');
+    if (!modal) return;
+
+    let lastFocusedElement = null;
+
+    // Store last focused element when modal opens
+    const observer = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        if (mutation.attributeName === 'class') {
+          if (modal.classList.contains('show')) {
+            lastFocusedElement = document.activeElement;
+            // Focus first focusable element in modal
+            const firstFocusable = modal.querySelector('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+            if (firstFocusable) {
+              setTimeout(() => firstFocusable.focus(), 100);
+            }
+          } else if (lastFocusedElement) {
+            lastFocusedElement.focus();
+            lastFocusedElement = null;
+          }
+        }
+      });
+    });
+
+    observer.observe(modal, { attributes: true });
+  }
+
+  // Notification system
+  setupNotifications() {
+    this.notificationContainer = document.getElementById('notificationsContainer');
+  }
+
+  showNotification(message, type = 'info', duration = 5000) {
+    if (!this.notificationContainer) return;
+
+    const notification = document.createElement('div');
+    notification.className = `notification ${type}`;
+    
+    const icons = {
+      success: 'fas fa-check-circle',
+      error: 'fas fa-exclamation-circle',
+      warning: 'fas fa-exclamation-triangle',
+      info: 'fas fa-info-circle'
+    };
+
+    notification.innerHTML = `
+      <i class="notification-icon ${icons[type]}" aria-hidden="true"></i>
+      <div class="notification-content">
+        <div class="notification-message">${message}</div>
+      </div>
+      <button class="notification-close" aria-label="Cerrar notificación">
+        <i class="fas fa-times" aria-hidden="true"></i>
+      </button>
+    `;
+
+    // Close button functionality
+    notification.querySelector('.notification-close').addEventListener('click', () => {
+      this.closeNotification(notification);
+    });
+
+    this.notificationContainer.appendChild(notification);
+
+    // Auto-close after duration
+    if (duration > 0) {
+      setTimeout(() => {
+        this.closeNotification(notification);
+      }, duration);
+    }
+
+    return notification;
+  }
+
+  closeNotification(notification) {
+    notification.style.transform = 'translateX(100%)';
+    notification.style.opacity = '0';
+    setTimeout(() => {
+      if (notification.parentNode) {
+        notification.parentNode.removeChild(notification);
+      }
+    }, 300);
+  }
+
+  // Initialize Chart.js diagrams
+  initializeCharts() {
+    // Wait for Chart.js to load
+    if (typeof Chart === 'undefined') {
+      setTimeout(() => this.initializeCharts(), 100);
+      return;
+    }
+
+    // Set Chart.js global defaults
+    Chart.defaults.font.family = 'Inter, system-ui, sans-serif';
+    Chart.defaults.font.size = 14;
+    Chart.defaults.color = '#404040';
+
+    this.createDevelopmentChart();
+    this.createSalesChart();
+    this.createMarketingChart();
+  }
+
+  // Development team workflow chart
+  createDevelopmentChart() {
+    const canvas = document.getElementById('dev-diagram');
+    if (!canvas) return;
+
+    try {
+      const ctx = canvas.getContext('2d');
+      
+      const chart = new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+          labels: ['GitHub', 'Jira', 'Slack', 'Confluence', 'Azure DevOps'],
+          datasets: [{
+            data: [30, 25, 20, 15, 10],
+            backgroundColor: [
+              '#333333',
+              '#0052CC',
+              '#4A154B',
+              '#172B4D',
+              '#0078D4'
+            ],
+            borderWidth: 3,
+            borderColor: '#ffffff',
+            hoverBorderWidth: 4,
+            hoverOffset: 10
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: true,
+          aspectRatio: 1.5,
+          plugins: {
+            legend: {
+              position: 'bottom',
+              labels: {
+                padding: 15,
+                usePointStyle: true,
+                font: {
+                  family: 'Inter',
+                  size: 12,
+                  weight: '500'
+                },
+                boxWidth: 12
+              }
+            },
+            tooltip: {
+              backgroundColor: '#1a1a1a',
+              titleColor: '#ffffff',
+              bodyColor: '#ffffff',
+              borderColor: '#FF3947',
+              borderWidth: 2,
+              callbacks: {
+                label: function(context) {
+                  return `${context.label}: ${context.parsed}% del flujo`;
+                }
+              }
+            }
+          },
+          animation: {
+            animateRotate: true,
+            duration: 2000,
+            easing: 'easeOutQuart',
+            onComplete: () => {
+              canvas.classList.add('chart-loaded');
+            }
+          }
+        }
+      });
+
+      this.charts.set('development', chart);
+    } catch (error) {
+      console.error('Error creating development chart:', error);
+      this.showChartError(canvas, 'Integración de herramientas de desarrollo');
+    }
+  }
+
+  // Sales team workflow chart
+  createSalesChart() {
+    const canvas = document.getElementById('sales-diagram');
+    if (!canvas) return;
+
+    try {
+      const ctx = canvas.getContext('2d');
+      
+      const chart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: ['Prospecting', 'Qualification', 'Demo', 'Proposal', 'Close'],
+          datasets: [{
+            label: 'Tiempo ahorrado (horas/semana)',
+            data: [12, 8, 6, 7, 4],
+            backgroundColor: '#FF3947',
+            borderColor: '#1a1a1a',
+            borderWidth: 2,
+            borderRadius: 8,
+            borderSkipped: false,
+            hoverBackgroundColor: '#FF1927',
+            hoverBorderColor: '#1a1a1a',
+            hoverBorderWidth: 3
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: true,
+          aspectRatio: 1.8,
+          plugins: {
+            legend: {
+              display: false
+            },
+            tooltip: {
+              backgroundColor: '#1a1a1a',
+              titleColor: '#ffffff',
+              bodyColor: '#ffffff',
+              borderColor: '#FF3947',
+              borderWidth: 2,
+              callbacks: {
+                label: function(context) {
+                  return `💰 ${context.parsed.y} horas ahorradas/semana`;
+                }
+              }
+            }
+          },
+          scales: {
+            y: {
+              beginAtZero: true,
+              grid: {
+                color: '#e5e5e5',
+                lineWidth: 1
+              },
+              border: {
+                color: '#1a1a1a',
+                width: 2
+              },
+              ticks: {
+                callback: function(value) {
+                  return value + 'h';
+                },
+                font: {
+                  weight: '500'
+                }
+              }
+            },
+            x: {
+              grid: {
+                display: false
+              },
+              border: {
+                color: '#1a1a1a',
+                width: 2
+              },
+              ticks: {
+                font: {
+                  weight: '500',
+                  size: 11
+                }
+              }
+            }
+          },
+          animation: {
+            duration: 2500,
+            easing: 'easeOutQuart',
+            delay: (context) => {
+              return context.dataIndex * 200;
+            },
+            onComplete: () => {
+              canvas.classList.add('chart-loaded');
+            }
+          }
+        }
+      });
+
+      this.charts.set('sales', chart);
+    } catch (error) {
+      console.error('Error creating sales chart:', error);
+      this.showChartError(canvas, 'Optimización del proceso de ventas');
+    }
+  }
+
+  // Marketing team workflow chart
+  createMarketingChart() {
+    const canvas = document.getElementById('marketing-diagram');
+    if (!canvas) return;
+
+    try {
+      const ctx = canvas.getContext('2d');
+      
+      const chart = new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun'],
+          datasets: [{
+            label: 'ROI Improvement',
+            data: [100, 125, 140, 165, 185, 220],
+            borderColor: '#FF3947',
+            backgroundColor: 'rgba(255, 57, 71, 0.15)',
+            borderWidth: 4,
+            fill: true,
+            tension: 0.4,
+            pointBackgroundColor: '#FF3947',
+            pointBorderColor: '#ffffff',
+            pointBorderWidth: 3,
+            pointRadius: 8,
+            pointHoverRadius: 10,
+            pointHoverBackgroundColor: '#FF1927',
+            pointHoverBorderColor: '#ffffff',
+            pointHoverBorderWidth: 4
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: true,
+          aspectRatio: 1.8,
+          plugins: {
+            legend: {
+              display: false
+            },
+            tooltip: {
+              backgroundColor: '#1a1a1a',
+              titleColor: '#ffffff',
+              bodyColor: '#ffffff',
+              borderColor: '#FF3947',
+              borderWidth: 2,
+              callbacks: {
+                label: function(context) {
+                  const improvement = context.parsed.y - 100;
+                  return `📊 ROI: ${context.parsed.y}% (+${improvement}%)`;
+                }
+              }
+            }
+          },
+          scales: {
+            y: {
+              beginAtZero: false,
+              min: 80,
+              max: 240,
+              grid: {
+                color: '#e5e5e5',
+                lineWidth: 1
+              },
+              border: {
+                color: '#1a1a1a',
+                width: 2
+              },
+              ticks: {
+                callback: function(value) {
+                  return value + '%';
+                },
+                font: {
+                  weight: '500'
+                }
+              }
+            },
+            x: {
+              grid: {
+                display: false
+              },
+              border: {
+                color: '#1a1a1a',
+                width: 2
+              },
+              ticks: {
+                font: {
+                  weight: '500',
+                  size: 11
+                }
+              }
+            }
+          },
+          animation: {
+            duration: 3000,
+            easing: 'easeOutQuart',
+            delay: (context) => {
+              return context.dataIndex * 300;
+            },
+            onComplete: () => {
+              canvas.classList.add('chart-loaded');
+            }
+          }
+        }
+      });
+
+      this.charts.set('marketing', chart);
+    } catch (error) {
+      console.error('Error creating marketing chart:', error);
+      this.showChartError(canvas, 'Crecimiento ROI de marketing');
+    }
+  }
+
+  // Recreate chart for active tab
+  recreateChartForTab(tabId) {
+    const chartMap = {
+      'development': 'development',
+      'sales': 'sales',
+      'marketing': 'marketing'
+    };
+
+    const chartKey = chartMap[tabId];
+    if (chartKey && this.charts.has(chartKey)) {
+      const chart = this.charts.get(chartKey);
+      chart.update('active');
+    }
+  }
+
+  // Animate chart when it comes into view
+  animateChart(chartId) {
+    const chartMap = {
+      'dev-diagram': 'development',
+      'sales-diagram': 'sales',
+      'marketing-diagram': 'marketing'
+    };
+
+    const chartKey = chartMap[chartId];
+    if (chartKey && this.charts.has(chartKey)) {
+      const chart = this.charts.get(chartKey);
+      chart.update('active');
+    }
+  }
+
+  // Scroll to contact section
+  scrollToContact() {
+    const contactSection = document.getElementById('contacto');
+    if (contactSection) {
+      const headerHeight = document.querySelector('.header').offsetHeight;
+      const targetPosition = contactSection.offsetTop - headerHeight - 20;
+      
+      window.scrollTo({
+        top: targetPosition,
+        behavior: 'smooth'
+      });
+    }
+  }
+
+  // CTA button handler
+  handleCTAClick(e) {
+    e.preventDefault();
+    this.scrollToContact();
+    this.trackEvent('cta_click', {
+      button_text: e.target.textContent.trim(),
+      source: e.target.closest('.hero, .nav, .mobile-menu, .cta') ? 'header' : 'page'
+    });
+  }
+
+  // Demo button handler
+  handleDemoClick(e) {
+    e.preventDefault();
+    this.showModal('demo');
+    this.trackEvent('demo_click', {
+      button_text: e.target.textContent.trim()
+    });
+  }
+
+  // Modal functionality
+  showModal(type) {
+    const modal = document.getElementById('modalOverlay');
+    const modalBody = document.getElementById('modalBody');
+    
+    if (!modal || !modalBody) return;
+
+    let content = '';
+    
+    if (type === 'demo') {
+      content = this.getDemoModalContent();
+    } else if (type === 'success') {
+      content = this.getSuccessModalContent();
+    }
+
+    modalBody.innerHTML = content;
+    modal.classList.add('show');
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+
+  // Close modal
+  closeModal() {
+    const modal = document.getElementById('modalOverlay');
+    if (modal) {
+      modal.classList.remove('show');
+      modal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+  }
+
+  // Show success modal after form submission
+  showSuccessModal() {
+    this.showModal('success');
+  }
+
+  // Demo modal content
+  getDemoModalContent() {
+    return `
+      <div class="modal-header">
+        <h2>Ver Demo en Vivo</h2>
+        <p>Descubre cómo Nori puede transformar tu productividad en solo 15 minutos</p>
+      </div>
+      <div class="modal-video">
+        <div class="video-placeholder">
+          <i class="fas fa-play-circle" style="font-size: 4rem; color: var(--accent-red);"></i>
+          <p>Demo interactivo próximamente</p>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary" onclick="window.heyNoriApp.scrollToContact(); window.heyNoriApp.closeModal();">
+          <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+          Solicitar Demo Personalizada
+        </button>
+      </div>
+    `;
+  }
+
+  // Success modal content
+  getSuccessModalContent() {
+    return `
+      <div class="modal-header">
+        <div style="text-align: center; margin-bottom: 2rem;">
+          <i class="fas fa-check-circle" style="font-size: 4rem; color: var(--success); margin-bottom: 1rem;"></i>
+          <h2>¡Solicitud Enviada!</h2>
+          <p>Gracias por tu interés en heynori!</p>
+        </div>
+      </div>
+      <div class="modal-content-body">
+        <div class="success-features">
+          <div class="success-feature">
+            <i class="fas fa-clock" aria-hidden="true"></i>
+            <div>
+              <h3>Te contactaremos en 24 horas</h3>
+              <p>Nuestro equipo revisará tu información y te contactará pronto</p>
+            </div>
+          </div>
+          <div class="success-feature">
+            <i class="fas fa-calendar-check" aria-hidden="true"></i>
+            <div>
+              <h3>Demo personalizada lista</h3>
+              <p>Prepararemos una demo específica para tu caso de uso</p>
+            </div>
+          </div>
+          <div class="success-feature">
+            <i class="fas fa-rocket" aria-hidden="true"></i>
+            <div>
+              <h3>Setup en 24 horas</h3>
+              <p>Si decides continuar, tendrás Nori funcionando al día siguiente</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+  }
+
+  // Event tracking (replace with actual analytics)
+  trackEvent(eventName, properties = {}) {
+    console.log('Event tracked:', eventName, properties);
+    
+    // Google Analytics 4 example
+    if (typeof gtag !== 'undefined') {
+      gtag('event', eventName, properties);
+    }
+    
+    // Facebook Pixel example
+    if (typeof fbq !== 'undefined') {
+      fbq('track', eventName, properties);
+    }
+  }
+
+  // Show chart error fallback
+  showChartError(canvas, description) {
+    canvas.style.display = 'none';
+    
+    const errorDiv = document.createElement('div');
+    errorDiv.className = 'chart-error';
+    errorDiv.innerHTML = `
+      <div class="error-content">
+        <i class="fas fa-chart-bar" style="font-size: 2rem; color: var(--gray-400); margin-bottom: 1rem;"></i>
+        <h4>${description}</h4>
+        <p>Gráfico interactivo no disponible<br>Los datos se cargan dinámicamente</p>
+      </div>
+    `;
+    
+    // Add error styles
+    errorDiv.style.cssText = `
+      background: var(--gray-100);
+      border: 2px dashed var(--gray-400);
+      border-radius: var(--border-radius-md);
+      padding: var(--spacing-xl);
+      text-align: center;
+      color: var(--gray-600);
+      min-height: 300px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    `;
+    
+    canvas.parentNode.appendChild(errorDiv);
+  }
+
+  // Cleanup on page unload
+  destroy() {
+    // Clean up observers
+    this.observers.forEach(observer => observer.disconnect());
+    
+    // Clean up charts
+    this.charts.forEach(chart => chart.destroy());
+  }
+}
+
+// Initialize the app when DOM is ready
+document.addEventListener('DOMContentLoaded', () => {
+  window.heyNoriApp = new HeyNoriApp();
+});
+
+// Cleanup on page unload
+window.addEventListener('beforeunload', () => {
+  if (window.heyNoriApp) {
+    window.heyNoriApp.destroy();
+  }
+});
+
+// Add styles for modal content
+const modalStyles = `
+<style>
+.modal-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.modal-header h2 {
+  margin-bottom: 0.5rem;
+  color: var(--primary-black);
+}
+
+.modal-header p {
+  color: var(--gray-600);
+  margin: 0;
+}
+
+.modal-video {
+  margin: 2rem 0;
+}
+
+.video-placeholder {
+  background: var(--gray-100);
+  border-radius: var(--border-radius-lg);
+  padding: 3rem;
+  text-align: center;
+  color: var(--gray-600);
+}
+
+.success-features {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.success-feature {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.success-feature i {
+  font-size: 1.5rem;
+  color: var(--success);
+  margin-top: 0.25rem;
+  flex-shrink: 0;
+}
+
+.success-feature h3 {
+  margin-bottom: 0.25rem;
+  font-size: 1rem;
+  color: var(--primary-black);
+}
+
+.success-feature p {
+  font-size: 0.875rem;
+  color: var(--gray-600);
+  margin: 0;
+}
+
+.modal-footer {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 480px) {
+  .modal-footer {
+    flex-direction: column;
+  }
+  
+  .success-features {
+    gap: 1rem;
+  }
+  
+  .success-feature {
+    gap: 0.75rem;
+  }
+  
+  .success-feature i {
+    font-size: 1.25rem;
+  }
+}
+</style>
+`;
+
+// Add modal styles to head
+document.head.insertAdjacentHTML('beforeend', modalStyles); 
