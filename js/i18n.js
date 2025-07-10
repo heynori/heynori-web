@@ -3,7 +3,7 @@
 
 class I18nSystem {
   constructor() {
-    this.currentLanguage = 'en'; // Idioma por defecto
+    this.currentLanguage = 'es'; // Idioma por defecto
     this.supportedLanguages = ['es', 'en'];
     this.translations = {};
     this.isInitialized = false;
@@ -19,9 +19,9 @@ class I18nSystem {
   detectAndApplyLanguage() {
     let detectedLanguage = this.detectUserLanguage();
     
-    // Si no se detecta un idioma soportado, usar inglés
+    // Si no se detecta un idioma soportado, usar español
     if (!this.supportedLanguages.includes(detectedLanguage)) {
-      detectedLanguage = 'en';
+      detectedLanguage = 'es';
     }
     
     this.setLanguage(detectedLanguage);

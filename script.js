@@ -257,24 +257,28 @@ class HeyNoriApp {
   // Contact form with validation
   setupContactForm() {
     const form = document.getElementById('contactForm');
-    if (!form) return;
-
-    // Real-time validation
-    const inputs = form.querySelectorAll('input, select, textarea');
-    inputs.forEach(input => {
-      input.addEventListener('blur', () => this.validateField(input));
-      input.addEventListener('input', () => {
-        if (input.classList.contains('error')) {
-          this.validateField(input);
-        }
+    if (form) {
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        await this.handleFormSubmission(form);
       });
-    });
 
-    // Form submission
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      await this.handleFormSubmission(form);
-    });
+      // Validación en tiempo real
+      const inputs = form.querySelectorAll('input[required], select[required]');
+      inputs.forEach(input => {
+        input.addEventListener('blur', () => {
+          if (input.value.trim() === '') {
+            input.classList.add('error');
+          } else {
+            input.classList.remove('error');
+          }
+        });
+
+        input.addEventListener('input', () => {
+          input.classList.remove('error');
+        });
+      });
+    }
   }
 
   // Field validation
@@ -328,84 +332,117 @@ class HeyNoriApp {
 
   // Form submission handler
   async handleFormSubmission(form) {
-    const submitBtn = form.querySelector('.form-submit');
-    const btnText = submitBtn.querySelector('.btn-text');
-    const btnLoading = submitBtn.querySelector('.btn-loading');
-
-    // Validate all fields
-    const inputs = form.querySelectorAll('input[required], select[required]');
-    let isFormValid = true;
-
-    inputs.forEach(input => {
-      if (!this.validateField(input)) {
-        isFormValid = false;
-      }
-    });
-
-    if (!isFormValid) {
-      const errorMessage = document.documentElement.lang === 'es' 
-        ? 'Por favor corrige los errores en el formulario' 
-        : 'Please correct the errors in the form';
-      this.showNotification(errorMessage, 'error');
-      return;
-    }
-
-    // Show loading state
-    submitBtn.disabled = true;
-    btnText.style.display = 'none';
-    btnLoading.style.display = 'flex';
-
     try {
-      // Real form submission to Web3Forms
       const formData = new FormData(form);
-      const object = Object.fromEntries(formData);
-      const json = JSON.stringify(object);
+      const baserowToken = formData.get('baserow_token');
+      const tableId = formData.get('baserow_table_id');
       
-      const response = await fetch('https://api.web3forms.com/submit', {
+      // Validar campos requeridos
+      const requiredFields = ['Name', 'Email', 'Company', 'Team Size'];
+      for (const field of requiredFields) {
+        if (!formData.get(field)) {
+          this.showNotification('Por favor completa todos los campos requeridos', 'error');
+          return;
+        }
+      }
+
+      // Deshabilitar el botón de envío y mostrar estado de carga
+      const submitBtn = form.querySelector('button[type="submit"]');
+      submitBtn.disabled = true;
+      const originalText = submitBtn.innerHTML;
+      submitBtn.innerHTML = 'Enviando...';
+
+      // Enviar a Web3Forms
+      const web3FormsData = {
+        access_key: formData.get('access_key'),
+        subject: formData.get('subject'),
+        from_name: formData.get('from_name'),
+        name: formData.get('Name'),
+        email: formData.get('Email'),
+        company: formData.get('Company'),
+        teamSize: formData.get('Team Size'),
+        message: formData.get('Message') || 'No message provided'
+      };
+
+      console.log('Enviando a Web3Forms:', web3FormsData);
+
+      const web3FormsResponse = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           'Accept': 'application/json'
         },
-        body: json
+        body: JSON.stringify(web3FormsData)
       });
 
-      const result = await response.json();
-      
-      if (response.status === 200) {
-        // Success
-        const successMessage = document.documentElement.lang === 'es' 
-          ? '¡Gracias! Te contactaremos pronto' 
-          : 'Thank you! We\'ll contact you soon';
-        this.showNotification(successMessage, 'success');
-        form.reset();
-        
-        // Trigger confetti for successful submission
-        this.triggerConfetti();
-
-        // Show success modal
-        this.showSuccessModal();
-        
-        // Track successful submission
-        this.trackEvent('form_submitted', {
-          language: document.documentElement.lang || 'es',
-          form_id: 'contact_form'
-        });
-      } else {
-        throw new Error('Form submission failed');
+      if (!web3FormsResponse.ok) {
+        throw new Error('Error al enviar el formulario a Web3Forms');
       }
-      
+
+      // Preparar datos para Baserow
+      const baserowData = {
+        "Name": formData.get('Name'),
+        "Email": formData.get('Email'),
+        "Company": formData.get('Company'),
+        "Team Size": formData.get('Team Size'),
+        "Message": formData.get('Message') || '',
+        "Created At": new Date().toISOString()
+      };
+
+      console.log('Enviando a Baserow:', baserowData);
+
+      // Enviar a Baserow usando la URL proporcionada con user_field_names=true
+      const baserowResponse = await fetch(`https://api.baserow.io/api/database/rows/table/${tableId}/?user_field_names=true`, {
+        method: 'POST',
+        headers: {
+          'Authorization': `Token ${baserowToken}`,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(baserowData)
+      });
+
+      const responseText = await baserowResponse.text();
+      console.log('Respuesta de Baserow (texto):', responseText);
+
+      if (!baserowResponse.ok) {
+        let errorMessage = 'Error desconocido';
+        try {
+          const errorData = JSON.parse(responseText);
+          console.error('Error detallado de Baserow:', errorData);
+          errorMessage = errorData.detail || JSON.stringify(errorData);
+        } catch (e) {
+          errorMessage = responseText || 'Error desconocido';
+        }
+        console.error('Error de Baserow:', errorMessage);
+        throw new Error(`Error al enviar el formulario a Baserow: ${errorMessage}`);
+      }
+
+      // Intentar parsear la respuesta para verificar
+      try {
+        const responseData = JSON.parse(responseText);
+        console.log('Respuesta parseada de Baserow:', responseData);
+      } catch (e) {
+        console.error('Error al parsear la respuesta:', e);
+      }
+
+      // Mostrar mensaje de éxito y resetear formulario
+      this.showNotification('¡Gracias! Te contactaremos pronto', 'success');
+      form.reset();
+
+      // Redirigir si hay URL de redirección
+      const redirectUrl = formData.get('redirect');
+      if (redirectUrl) {
+        window.location.href = redirectUrl;
+      }
+
     } catch (error) {
-      console.error('Form submission error:', error);
-      const errorMessage = document.documentElement.lang === 'es' 
-        ? 'Error al enviar el formulario. Inténtalo de nuevo' 
-        : 'Error sending form. Please try again';
-      this.showNotification(errorMessage, 'error');
+      console.error('Error al enviar el formulario:', error);
+      this.showNotification(`Error: ${error.message}`, 'error');
     } finally {
-      // Reset button state
+      // Rehabilitar el botón de envío y restaurar texto original
+      const submitBtn = form.querySelector('button[type="submit"]');
       submitBtn.disabled = false;
-      btnText.style.display = 'inline-flex';
-      btnLoading.style.display = 'none';
+      submitBtn.innerHTML = originalText;
     }
   }
 

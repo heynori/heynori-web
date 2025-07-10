@@ -30,10 +30,10 @@ heynori-web/
 ├── index.html          # Página principal
 ├── styles.css          # Estilos modernos con CSS Grid/Flexbox
 ├── script.js           # JavaScript interactivo
-├── IS5uYOSPH6JapiCuAutslC6X70U.avif    # Logo principal (fondo neutro/beige)
-├── IS5uYOSPH6JapiCuAutslC6X70U.avif # Logo para fondos claros
-├── IS5uYOSPH6JapiCuAutslC6X70U.avif  # Logo para fondos oscuros
-├── IS5uYOSPH6JapiCuAutslC6X70U.avif         # Favicon
+├── heynori-logo.png    # Logo principal (fondo neutro/beige)
+├── heynori-logo.png # Logo para fondos claros
+├── heynori-logo.png  # Logo para fondos oscuros
+├── heynori-logo.png         # Favicon
 ├── landing-copy.md     # Copy original completo
 ├── estrategia-marketing.md # Estrategias de marketing y conversión
 └── deployment-readme.md # Este archivo

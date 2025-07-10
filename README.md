@@ -14,11 +14,11 @@ heynori-web/
 ├── assets/                          # Recursos estáticos
 │   └── images/                      # Imágenes del proyecto
 │       ├── logos/                   # Logos en diferentes variantes
-│       │   ├── IS5uYOSPH6JapiCuAutslC6X70U.avif     # Logo principal
-│       │   ├── IS5uYOSPH6JapiCuAutslC6X70U.avif # Logo para fondos oscuros
-│       │   └── IS5uYOSPH6JapiCuAutslC6X70U.avif # Logo para fondos claros
-│       ├── IS5uYOSPH6JapiCuAutslC6X70U.avif              # Icono del sitio
-│       └── IS5uYOSPH6JapiCuAutslC6X70U.avif # Imagen principal
+│       │   ├── heynori-logo.png     # Logo principal
+│       │   ├── heynori-logo.png # Logo para fondos oscuros
+│       │   └── heynori-logo.png # Logo para fondos claros
+│       ├── heynori-logo.png              # Icono del sitio
+│       └── heynori-logo.png # Imagen principal
 ├── docs/                            # Documentación del proyecto
 │   ├── deployment-readme.md         # Guía de deployment
 │   ├── estrategia-marketing.md      # Estrategia de marketing
