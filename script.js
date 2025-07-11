@@ -338,12 +338,21 @@ class HeyNoriApp {
       const tableId = formData.get('baserow_table_id');
       
       // Validar campos requeridos
-      const requiredFields = ['Name', 'Email', 'Company', 'Team Size'];
+      const requiredFields = ['Name', 'Email', 'Company', 'Industry', 'Team Size'];
       for (const field of requiredFields) {
         if (!formData.get(field)) {
           this.showNotification('Por favor completa todos los campos requeridos', 'error');
           return;
         }
+      }
+
+      // Validar que al menos una categoría esté seleccionada
+      const selectedCategories = Array.from(form.querySelectorAll('input[name="Stack"]:checked'))
+        .map(checkbox => checkbox.value);
+
+      if (selectedCategories.length === 0) {
+        this.showNotification('Por favor selecciona al menos una categoría de herramientas', 'error');
+        return;
       }
 
       // Deshabilitar el botón de envío y mostrar estado de carga
@@ -352,7 +361,7 @@ class HeyNoriApp {
       const originalText = submitBtn.innerHTML;
       submitBtn.innerHTML = 'Enviando...';
 
-      // Enviar a Web3Forms
+      // Preparar datos para Web3Forms
       const web3FormsData = {
         access_key: formData.get('access_key'),
         subject: formData.get('subject'),
@@ -361,6 +370,7 @@ class HeyNoriApp {
         email: formData.get('Email'),
         company: formData.get('Company'),
         teamSize: formData.get('Team Size'),
+        stack: selectedCategories.join(', '),
         message: formData.get('Message') || 'No message provided'
       };
 
@@ -384,6 +394,8 @@ class HeyNoriApp {
         "Name": formData.get('Name'),
         "Email": formData.get('Email'),
         "Company": formData.get('Company'),
+        "Industry": formData.get('Industry'),
+        "Stack": selectedCategories.join(', '),
         "Team Size": formData.get('Team Size'),
         "Message": formData.get('Message') || '',
         "Created At": new Date().toISOString()
@@ -1214,6 +1226,11 @@ class HeyNoriApp {
 // Initialize the app when DOM is ready
 document.addEventListener('DOMContentLoaded', () => {
   window.heyNoriApp = new HeyNoriApp();
+});
+
+// Manejar la selección múltiple del select de herramientas
+document.addEventListener('DOMContentLoaded', function() {
+    // Aquí estaba el código del select que eliminamos
 });
 
 // Cleanup on page unload

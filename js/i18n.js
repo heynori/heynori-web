@@ -146,6 +146,54 @@ class I18nSystem {
         'es': 'Empresa',
         'en': 'Company'
       },
+      'form.industry': {
+        'es': 'Industria',
+        'en': 'Industry'
+      },
+      'form.toolCategories': {
+        'es': 'Categorías de herramientas a integrar',
+        'en': 'Tool categories to integrate'
+      },
+      'form.toolCategories.project_management': {
+        'es': 'Gestión de Proyectos',
+        'en': 'Project Management'
+      },
+      'form.toolCategories.communication': {
+        'es': 'Comunicación',
+        'en': 'Communication'
+      },
+      'form.toolCategories.development': {
+        'es': 'Desarrollo',
+        'en': 'Development'
+      },
+      'form.toolCategories.documentation': {
+        'es': 'Documentación',
+        'en': 'Documentation'
+      },
+      'form.toolCategories.crm': {
+        'es': 'CRM y Ventas',
+        'en': 'CRM & Sales'
+      },
+      'form.toolCategories.marketing': {
+        'es': 'Marketing',
+        'en': 'Marketing'
+      },
+      'form.toolCategories.design': {
+        'es': 'Diseño y Producto',
+        'en': 'Design & Product'
+      },
+      'form.toolCategories.analytics': {
+        'es': 'Analytics',
+        'en': 'Analytics'
+      },
+      'form.toolCategories.other': {
+        'es': 'Otras categorías',
+        'en': 'Other categories'
+      },
+      'form.toolCategories.help': {
+        'es': 'Selecciona las categorías de herramientas que te gustaría conectar entre sí',
+        'en': 'Select the tool categories you would like to connect with each other'
+      },
       'form.submit': {
         'es': 'Solicitar Demo Personalizada',
         'en': 'Request Personalized Demo'
@@ -671,6 +719,55 @@ class I18nSystem {
       'easter.rainbow-disabled': {
         'es': 'Modo arcoíris desactivado',
         'en': 'Rainbow mode disabled'
+      },
+      // Herramientas
+      'form.tools': {
+        'es': 'Herramientas',
+        'en': 'Tools'
+      },
+      'form.tools.project': {
+        'es': 'Gestión de Proyectos',
+        'en': 'Project Management'
+      },
+      'form.tools.communication': {
+        'es': 'Comunicación',
+        'en': 'Communication'
+      },
+      'form.tools.development': {
+        'es': 'Desarrollo',
+        'en': 'Development'
+      },
+      'form.tools.documentation': {
+        'es': 'Documentación',
+        'en': 'Documentation'
+      },
+      'form.tools.crm': {
+        'es': 'CRM y Ventas',
+        'en': 'CRM & Sales'
+      },
+      'form.tools.marketing': {
+        'es': 'Marketing',
+        'en': 'Marketing'
+      },
+      'form.tools.design': {
+        'es': 'Diseño y Producto',
+        'en': 'Design & Product'
+      },
+      'form.tools.analytics': {
+        'es': 'Analítica',
+        'en': 'Analytics'
+      },
+      'form.tools.other': {
+        'es': 'Otras herramientas',
+        'en': 'Other tools'
+      },
+      'form.message': {
+        'es': 'Cuéntanos tu problema',
+        'en': 'Tell us your main challenge'
+      },
+      'form.submit': {
+        'es': 'Solicitar Demo Personalizada',
+        'en': 'Request Personalized Demo'
       }
     };
   }
@@ -734,8 +831,8 @@ class I18nSystem {
     const selector = document.createElement('div');
     selector.className = 'language-selector';
     selector.innerHTML = `
-      <button class="lang-btn" data-lang="es" title="Español">🇪🇸</button>
-      <button class="lang-btn" data-lang="en" title="English">🇺🇸</button>
+      <button class="lang-btn" data-lang="es" title="Español">ES</button>
+      <button class="lang-btn" data-lang="en" title="English">EN</button>
     `;
 
     // Event listeners
@@ -744,6 +841,12 @@ class I18nSystem {
         this.setLanguage(btn.dataset.lang);
       });
     });
+
+    // Marcar el botón activo inicialmente
+    const activeBtn = selector.querySelector(`[data-lang="${this.currentLanguage}"]`);
+    if (activeBtn) {
+      activeBtn.classList.add('active');
+    }
 
     return selector;
   }
